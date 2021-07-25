@@ -1,1 +1,1 @@
-# bokzip-front
+# bokzip-frontend
