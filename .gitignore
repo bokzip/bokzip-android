@@ -107,6 +107,10 @@ lint/tmp/
 gen-external-apklibs
 output.json
 
+app/src/main/res/drawable-*/
+app/src/main/res/font/
+app/src/main/res/mipmap*/
+
 # Replacement of .externalNativeBuild directories introduced
 # with Android Studio 3.5.
 
@@ -132,5 +136,3 @@ output.json
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-
-# End of https://www.toptal.com/developers/gitignore/api/android,kotlin
