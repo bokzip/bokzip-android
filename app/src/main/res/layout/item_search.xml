@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="10dp"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="@color/ultraSemiTransparent"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@color/mediumGray" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_cjkkr_medium"
+            android:gravity="right"
+            android:includeFontPadding="false"
+            android:textColor="@color/black"
+            android:textSize="13dp"
+            tools:text="건강보험료 할인" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans_cjkkr_regular"
+            android:includeFontPadding="false"
+            android:maxLines="4"
+            android:textColor="@color/darkGray"
+            android:textSize="11dp"
+            tools:text="지원 대상 만 6세 이상 ~ 만 65세 미만인 등록 장애인 중 활동지원 서비스지원 종합조사 결과 활동지원등급 판정을 받은 분에게 지원합니다.
+ 장애인활동지원서비스를 받는 도중에 만 65세가 도래하여 장기요양인정 신청을 하면" />
+    </LinearLayout>
+
+</LinearLayout>
+

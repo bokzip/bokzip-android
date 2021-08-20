@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/white"
+    tools:context=".sign.SignupLocationSetActivity">
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="60dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_cjkkr_bold"
+            android:includeFontPadding="false"
+            android:text="거주지를 설정해 주세요"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans_cjkkr_medium"
+            android:includeFontPadding="false"
+            android:text="거주지의 복지정보를 보여드립니다"
+            android:textColor="@color/darkGray"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_search_box_bg"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/noto_sans_cjkkr_medium"
+            android:gravity="center_vertical"
+            android:hint="시/군/구 명으로 검색 (ex. 용산구)"
+            android:includeFontPadding="false"
+            android:paddingLeft="15dp"
+            android:textColorHint="@color/darkGray"
+            android:textSize="15dp" />
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="15dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_search_delete" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:src="@drawable/ic_location" />
+
+        <TextView
+            android:id="@+id/search_cur_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:fontFamily="@font/noto_sans_cjkkr_medium"
+            android:includeFontPadding="false"
+            android:text="현재 위치 찾기"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="15dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp">
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_prev_step" />
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/ic_cur_step" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_default_bg"
+        android:fontFamily="@font/noto_sans_cjkkr_bold"
+        android:includeFontPadding="false"
+        android:text="완료"
+        android:textColor="@color/white"
+        android:textSize="15dp" />
+</LinearLayout>
