@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <ImageView
+                    android:id="@+id/thumbnail"
+                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@color/mediumGray"
+                    android:foreground="@color/ultraSemiTransparent"/>
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/noto_sans_cjkkr_black"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
+                    tools:text="건강보험료 할인" />
+
+                <TextView
+                    android:id="@+id/category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    app:layout_constraintBottom_toTopOf="@id/title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/noto_sans_cjkkr_regular"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    tools:text="용산구"
+                    android:background="@drawable/btn_default_bg"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="30dp">
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:fontFamily="@font/noto_sans_cjkkr_bold"
+                        android:id="@+id/target"
+                        android:includeFontPadding="false"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="지원 대상"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:fontFamily="@font/noto_sans_cjkkr_regular"
+                        android:id="@+id/target_content"
+                        android:includeFontPadding="false"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="13dp"
+                        tools:text="test" />
+                </LinearLayout>
+
+                <!-- 선정기준은 중앙부처 복지만 디스플레이-->
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:fontFamily="@font/noto_sans_cjkkr_bold"
+                        android:id="@+id/criterias"
+                        android:includeFontPadding="false"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_width="wrap_content"
+                        android:text="선정 기준"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:fontFamily="@font/noto_sans_cjkkr_regular"
+                        android:id="@+id/criterias_text"
+                        android:includeFontPadding="false"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="13dp"
+                        tools:text="test" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:fontFamily="@font/noto_sans_cjkkr_bold"
+                        android:id="@+id/description"
+                        android:includeFontPadding="false"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_width="wrap_content"
+                        android:text="지원 내용"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:fontFamily="@font/noto_sans_cjkkr_regular"
+                        android:id="@+id/description_text"
+                        android:includeFontPadding="false"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="13dp"
+                        tools:text="test" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:fontFamily="@font/noto_sans_cjkkr_bold"
+                        android:id="@+id/how_to_apply"
+                        android:includeFontPadding="false"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_width="wrap_content"
+                        android:text="신청 방법"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:fontFamily="@font/noto_sans_cjkkr_regular"
+                        android:id="@+id/how_to_apply_text"
+                        android:includeFontPadding="false"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="13dp"
+                        tools:text="test" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@font/noto_sans_cjkkr_bold"
+                        android:text="문의처"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/contact_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@font/noto_sans_cjkkr_regular"
+                        android:textColor="@color/black"
+                        android:textSize="13dp"
+                        tools:text="test" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/main"
+            android:paddingHorizontal="20dp">
+            <ImageButton
+                android:id="@+id/scrap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_unscrap" />
+
+            <TextView
+                android:id="@+id/scrap_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/noto_sans_cjkkr_medium"
+                android:textColor="@color/white"
+                android:textSize="13dp"
+                tools:text="201" />
+        </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/mediumMint"/>
+        <Button
+            android:id="@+id/apply_url_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/noto_sans_cjkkr_bold"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            tools:text="신청 사이트로 이동하기"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@color/main" />
+    </LinearLayout>
+
+
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back_sticker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</FrameLayout>

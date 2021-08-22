@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SearchResultActivity"></activity>
+        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".MyActivity" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".sign.SignupLocationSetActivity" />
+        <activity android:name=".sign.SignupCategorySetActivity" />
+        <activity android:name=".sign.SigninActivity" />
+        <activity android:name=".IntroActivity" />
+        <activity android:name=".home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/category_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/education"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_toLeftOf="@id/employment"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
+                android:text="교육"
+                android:textColor="@drawable/selector_category_text_color"
+                android:textSize="15dp"
+                android:button="@null"
+                android:background="@drawable/selector_category_bg"/>
+
+            <RadioButton
+                android:id="@+id/employment"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
+                android:text="고용"
+                android:textColor="@drawable/selector_category_text_color"
+                android:textSize="15dp"
+                android:button="@null"
+                android:background="@drawable/selector_category_bg"/>
+
+            <RadioButton
+                android:id="@+id/health"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_toRightOf="@id/employment"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
+                android:text="건강"
+                android:textColor="@drawable/selector_category_text_color"
+                android:textSize="15dp"
+                android:button="@null"
+                android:background="@drawable/selector_category_bg"/>/>
+
+            <RadioButton
+                android:id="@+id/life"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_alignTop="@id/all"
+                android:layout_toLeftOf="@id/all"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
+                android:text="생활"
+                android:textColor="@drawable/selector_category_text_color"
+                android:textSize="15dp"
+                android:button="@null"
+                android:background="@drawable/selector_category_bg"/>/>
+
+            <RadioButton
+                android:id="@+id/all"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="30dp"
+                android:layout_below="@id/employment"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
+                android:text="전체"
+                android:textColor="@drawable/selector_category_text_color"
+                android:textSize="15dp"
+                android:button="@null"
+                android:background="@drawable/selector_category_bg"/>/>
+        </RelativeLayout>
+    </RadioGroup>
+
+</LinearLayout>

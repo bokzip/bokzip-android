@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal">
+
+    <RadioGroup
+        android:id="@+id/category_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/star_count_order"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/selector_category_bg"
+            android:button="@null"
+            android:fontFamily="@font/noto_sans_cjkkr_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="인기순"
+            android:textColor="@drawable/selector_category_text_color"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/view_count_order"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/selector_category_bg"
+            android:button="@null"
+            android:fontFamily="@font/noto_sans_cjkkr_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="조회순"
+            android:textColor="@drawable/selector_category_text_color"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/default_order"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:background="@drawable/selector_category_bg"
+            android:button="@null"
+            android:fontFamily="@font/noto_sans_cjkkr_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="조회순"
+            android:textColor="@drawable/selector_category_text_color"
+            android:textSize="15dp" />
+
+    </RadioGroup>
+
+</LinearLayout>

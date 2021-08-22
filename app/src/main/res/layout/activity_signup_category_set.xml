@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/white"
+    tools:context=".sign.SignupCategorySetActivity">
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="60dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_cjkkr_bold"
+            android:includeFontPadding="false"
+            android:text="관심 분야를\n모두 선택해 주세요"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans_cjkkr_medium"
+            android:includeFontPadding="false"
+            android:text="관심 분야의 복지정보를 보여드립니다"
+            android:textColor="@color/darkGray"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/category_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- @see 라디오버튼 커스텀 : https://curryyou.tistory.com/395-->
+            <RadioButton
+                android:id="@+id/education"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_toLeftOf="@id/employment"
+                android:gravity="center"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
+                android:includeFontPadding="false"
+                android:text="교육"
+                android:textColor="@drawable/selector_category_text_color"
+                android:textSize="15dp"
+                android:button="@null"
+                android:background="@drawable/selector_category_bg"/>
+
+            <RadioButton
+                android:id="@+id/employment"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
+                android:includeFontPadding="false"
+                android:text="고용"
+                android:textColor="@drawable/selector_category_text_color"
+                android:textSize="15dp"
+                android:button="@null"
+                android:background="@drawable/selector_category_bg"/>
+
+            <RadioButton
+                android:id="@+id/health"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_toRightOf="@id/employment"
+                android:gravity="center"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
+                android:includeFontPadding="false"
+                android:text="건강"
+                android:textColor="@drawable/selector_category_text_color"
+                android:textSize="15dp"
+                android:button="@null"
+                android:background="@drawable/selector_category_bg"/>/>
+
+            <RadioButton
+                android:id="@+id/life"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_alignTop="@id/all"
+                android:layout_toLeftOf="@id/all"
+                android:gravity="center"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
+                android:includeFontPadding="false"
+                android:text="생활"
+                android:textColor="@drawable/selector_category_text_color"
+                android:textSize="15dp"
+                android:button="@null"
+                android:background="@drawable/selector_category_bg"/>/>
+
+            <RadioButton
+                android:id="@+id/all"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="30dp"
+                android:layout_below="@id/employment"
+                android:gravity="center"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
+                android:includeFontPadding="false"
+                android:text="전체"
+                android:textColor="@drawable/selector_category_text_color"
+                android:textSize="15dp"
+                android:button="@null"
+                android:background="@drawable/selector_category_bg"/>/>
+        </RelativeLayout>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_cur_step" />
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/ic_prev_step" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_default_bg"
+        android:fontFamily="@font/noto_sans_cjkkr_bold"
+        android:includeFontPadding="false"
+        android:text="완료"
+        android:textColor="@color/white"
+        android:textSize="15dp" />
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tab_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/noto_sans_cjkkr_medium"
+        android:textColor="@drawable/selector_tab_menu_text_color"
+        android:textSize="15dp"
+        tools:text="추천"
+        android:background="@drawable/selector_tab_menu_bg"/>
+
+</LinearLayout>
+
+
+<!--    android:paddingHorizontal="10dp"-->
+<!--    android:paddingVertical="5dp"-->
