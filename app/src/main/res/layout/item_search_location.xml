@@ -29,7 +29,3 @@
         tools:text="서울시 용산구 한남동"/>
 
 </LinearLayout>
-
-
-<!--    android:paddingHorizontal="10dp"-->
-<!--    android:paddingVertical="5dp"-->

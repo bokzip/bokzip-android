@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -26,6 +27,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    // 데이터 바인딩 사용
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -45,4 +51,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
+    // 레트로핏
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // 로그 찍기
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.6.0'
 }
