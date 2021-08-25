@@ -132,3 +132,6 @@ output.json
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# T map API Key
+/app/src/main/java/com/unionz/bokzip/util/Key.kt
