@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--@see : https://odomm.tistory.com/entry/se-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -38,7 +37,7 @@
             android:paddingVertical="5dp"
             android:textColor="@drawable/selector_tab_menu_text_color"
             android:textSize="15dp"
-            tools:text="분야" />
+            android:text="분야" />
 
         <Button
             android:id="@+id/location"
@@ -55,7 +54,7 @@
             android:paddingVertical="5dp"
             android:textColor="@drawable/selector_tab_menu_text_color"
             android:textSize="15dp"
-            tools:text="거주지" />
+            android:text="거주지" />
 
         <Button
             android:id="@+id/sort"
@@ -71,7 +70,7 @@
             android:paddingVertical="5dp"
             android:textColor="@drawable/selector_tab_menu_text_color"
             android:textSize="15dp"
-            tools:text="거주지" />
+            android:text="정렬" />
 
         <View
             android:layout_width="0dp"
@@ -121,6 +120,6 @@
         android:includeFontPadding="false"
         android:textColor="@color/white"
         android:textSize="15dp"
-        tools:text="적용하기" />
+        android:text="적용하기" />
 
 </LinearLayout>
