@@ -29,20 +29,6 @@
             android:id="@+id/view_count_order"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/selector_category_bg"
-            android:button="@null"
-            android:fontFamily="@font/noto_sans_cjkkr_bold"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:text="조회순"
-            android:textColor="@drawable/selector_category_text_color"
-            android:textSize="15dp" />
-
-        <RadioButton
-            android:id="@+id/default_order"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
             android:background="@drawable/selector_category_bg"
             android:button="@null"
             android:fontFamily="@font/noto_sans_cjkkr_bold"

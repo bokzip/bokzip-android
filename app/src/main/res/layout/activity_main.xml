@@ -10,7 +10,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:paddingHorizontal="20dp"
         android:layout_marginVertical="20dp">
         <ImageButton
@@ -24,32 +24,32 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            app:tabPaddingStart="0dp"
-            app:tabPaddingEnd="0dp"
-            app:tabContentStart="0dp"
-            android:clipToPadding="true"
+            app:tabPaddingTop="-10dp"
+            app:tabPaddingBottom="-10dp"
             app:tabGravity="center"
             app:tabMode="auto"
-            app:tabIndicator="@null">
+            app:tabIndicator="@null"
+            app:tabTextAppearance="@style/tab_text"
+            app:tabBackground="@drawable/selector_tab_menu_bg">
 
 <!-- TabItem을 커스텀하는 중이고, 추후 사용될 수 있으므로 주석처리해둠. -->
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:id="@+id/tab_1"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="탭1"/>-->
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:id="@+id/tab_2"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="탭2"/>-->
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:id="@+id/tab_3"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="탭3"/>-->
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/recommend_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="추천" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/general_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일반" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/scrap_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="스크랩" />
         </com.google.android.material.tabs.TabLayout>
 
         <ImageButton

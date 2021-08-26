@@ -262,7 +262,7 @@
             android:fontFamily="@font/noto_sans_cjkkr_bold"
             android:textColor="@color/white"
             android:textSize="15dp"
-            tools:text="신청 사이트로 이동하기"
+            android:text="신청 사이트로 이동하기"
             style="?android:attr/borderlessButtonStyle"
             android:background="@color/main" />
     </LinearLayout>
