@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.unionz.bokzip.R
 import com.unionz.bokzip.adapter.BokjiItemAdapter
 import com.unionz.bokzip.model.BokjiItem
+import com.unionz.bokzip.FilterBottomSheet
+
 import kotlinx.android.synthetic.main.fragment_tap_recommend.view.*
 
 class RecommendFragment: Fragment() {
@@ -50,6 +52,7 @@ class RecommendFragment: Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         val view: View = inflater.inflate(R.layout.fragment_tap_recommend, container, false)
+
         val adapter = BokjiItemAdapter(requireContext(), bokziList)
         view.recyclerview.adapter = adapter
 
@@ -65,6 +68,10 @@ class RecommendFragment: Fragment() {
             view.category_textview.setText("중앙부처 복지")
         }
 
+        view.btn_filter.setOnClickListener {
+            val bottomSheet = FilterBottomSheet()
+            bottomSheet.show(parentFragmentManager, bottomSheet.tag);
+        }
 
         return view
     }

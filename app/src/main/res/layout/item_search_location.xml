@@ -27,5 +27,5 @@
         android:textColor="@color/darkGray"
         android:textSize="15dp"
         tools:text="서울시 용산구 한남동"/>
-
 </LinearLayout>
+
