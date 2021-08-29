@@ -33,7 +33,7 @@
                     android:foreground="@color/ultraSemiTransparent"/>
 
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/bokji_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    app:layout_constraintBottom_toTopOf="@id/title"
+                    app:layout_constraintBottom_toTopOf="@id/bokji_title"
                     app:layout_constraintStart_toStartOf="parent"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="5dp"
@@ -106,7 +106,7 @@
 
                     <TextView
                         android:fontFamily="@font/noto_sans_cjkkr_bold"
-                        android:id="@+id/criterias"
+                        android:id="@+id/criteria"
                         android:includeFontPadding="false"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
@@ -237,7 +237,8 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginRight="5dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_unscrap" />
+                android:src="@drawable/ic_unscrap"
+                android:onClick="onClick"/>
 
             <TextView
                 android:id="@+id/scrap_cnt"
@@ -264,7 +265,8 @@
             android:textSize="15dp"
             android:text="신청 사이트로 이동하기"
             style="?android:attr/borderlessButtonStyle"
-            android:background="@color/main" />
+            android:background="@color/main"
+            android:onClick="onClick"/>
     </LinearLayout>
 
 
@@ -277,6 +279,7 @@
         android:background="@android:color/transparent"
         android:src="@drawable/ic_back_sticker"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="onClick"/>
 
 </FrameLayout>
