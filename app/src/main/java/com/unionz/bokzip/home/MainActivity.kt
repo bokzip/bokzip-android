@@ -64,6 +64,8 @@ class MainActivity : AppCompatActivity() {
 //                2 ->
 //            }
         }.attach()
+
+
     }
 
     // TabLayout의 TabItem을 커스텀하기
