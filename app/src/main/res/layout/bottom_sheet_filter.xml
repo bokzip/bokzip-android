@@ -7,6 +7,7 @@
     android:padding="20dp">
 
     <TextView
+        android:id="@+id/exam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_cjkkr_bold"
@@ -27,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:background="@drawable/btn_default_bg"
+            android:background="@drawable/selector_tab_menu_bg"
             android:fontFamily="@font/noto_sans_cjkkr_medium"
             android:includeFontPadding="false"
             android:minWidth="0dp"
@@ -35,7 +36,7 @@
             android:paddingHorizontal="10dp"
             android:paddingVertical="5dp"
             android:text="분야"
-            android:textColor="@color/white"
+            android:textColor="@drawable/selector_tab_menu_text_color"
             android:textSize="15dp" />
 
         <Button
@@ -112,19 +113,16 @@
         android:visibility="visible">
 
         <RadioGroup
-            android:id="@+id/category_radio_group"
+            android:id="@+id/category_radio_group_one"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
                 <RadioButton
                     android:id="@+id/education"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_toLeftOf="@id/employment"
                     android:background="@drawable/selector_category_bg"
                     android:button="@null"
                     android:fontFamily="@font/noto_sans_cjkkr_bold"
@@ -163,6 +161,14 @@
                     android:text="건강"
                     android:textColor="@drawable/selector_category_text_color"
                     android:textSize="15dp" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/category_radio_group_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
                 <RadioButton
                     android:id="@+id/life"
@@ -185,7 +191,7 @@
                     android:layout_height="90dp"
                     android:layout_below="@id/employment"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginLeft="30dp"
                     android:background="@drawable/selector_category_bg"
                     android:button="@null"
                     android:fontFamily="@font/noto_sans_cjkkr_bold"
@@ -194,9 +200,7 @@
                     android:text="전체"
                     android:textColor="@drawable/selector_category_text_color"
                     android:textSize="15dp" />
-            </RelativeLayout>
         </RadioGroup>
-
     </LinearLayout>
 
 
@@ -278,7 +282,6 @@
                 android:id="@+id/view_count_order"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:layout_marginRight="30dp"
                 android:background="@drawable/selector_category_bg"
                 android:button="@null"
                 android:fontFamily="@font/noto_sans_cjkkr_bold"
@@ -287,8 +290,6 @@
                 android:text="조회순"
                 android:textColor="@drawable/selector_category_text_color"
                 android:textSize="15dp" />
-
-
         </RadioGroup>
 
     </LinearLayout>

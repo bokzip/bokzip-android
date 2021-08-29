@@ -3,7 +3,7 @@
 
     <!-- 선택되었을 때의 탭메뉴 -->
     <item android:color="@color/white"
-        android:state_selected="true" />
+        android:state_checked="true" />
 
     <!-- 기본 탭메뉴 -->
     <item android:color="@color/main" />

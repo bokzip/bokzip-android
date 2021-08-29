@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.unionz.bokzip.FilterBottomSheet
 import com.unionz.bokzip.R
 import com.unionz.bokzip.adapter.BokjiItemAdapter
+//import com.unionz.bokzip.adapter.BokjiItemAdapter
 import com.unionz.bokzip.model.BokjiItem
 import com.unionz.bokzip.util.StrUtil
 import kotlinx.android.synthetic.main.fragment_tap_recommend.*

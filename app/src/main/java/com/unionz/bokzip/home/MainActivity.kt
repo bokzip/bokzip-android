@@ -51,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(tab_layout, view_pager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+
+
     }
 
     // 뷰페이저 아이템으로 탭별 프래그먼트 등록
