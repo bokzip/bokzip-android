@@ -18,7 +18,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="60dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="45dp"
         android:orientation="vertical">
 
         <TextView
@@ -41,92 +42,89 @@
             android:textSize="15dp" />
     </LinearLayout>
 
-    <RadioGroup
-        android:id="@+id/category_radio_group"
+    <LinearLayout
+        android:id="@+id/filter_category"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_gravity="top"
+        android:orientation="vertical"
+        android:visibility="visible">
 
-        <RelativeLayout
+        <RadioGroup
+            android:id="@+id/category_radio_group_one"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <!-- @see 라디오버튼 커스텀 : https://curryyou.tistory.com/395-->
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
             <RadioButton
                 android:id="@+id/education"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:layout_toLeftOf="@id/employment"
-                android:gravity="center"
-                android:fontFamily="@font/noto_sans_cjkkr_bold"
-                android:includeFontPadding="false"
-                android:text="교육"
-                android:textColor="@drawable/selector_category_text_color"
-                android:textSize="15dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/selector_category_bg"
                 android:button="@null"
-                android:background="@drawable/selector_category_bg"/>
+                android:gravity="center"
+                android:text="교육"
+                style="@style/category_text_style"/>
 
             <RadioButton
                 android:id="@+id/employment"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginBottom="30dp"
-                android:gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/selector_category_bg"
+                android:button="@null"
                 android:fontFamily="@font/noto_sans_cjkkr_bold"
+                android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="고용"
                 android:textColor="@drawable/selector_category_text_color"
-                android:textSize="15dp"
-                android:button="@null"
-                android:background="@drawable/selector_category_bg"/>
+                android:textSize="15dp" />
 
             <RadioButton
                 android:id="@+id/health"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:layout_toRightOf="@id/employment"
-                android:gravity="center"
-                android:fontFamily="@font/noto_sans_cjkkr_bold"
-                android:includeFontPadding="false"
-                android:text="건강"
-                android:textColor="@drawable/selector_category_text_color"
-                android:textSize="15dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/selector_category_bg"
                 android:button="@null"
-                android:background="@drawable/selector_category_bg"/>/>
+                android:gravity="center"
+                android:text="건강"
+                style="@style/category_text_style"/>
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/category_radio_group_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <RadioButton
                 android:id="@+id/life"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:layout_alignTop="@id/all"
-                android:layout_toLeftOf="@id/all"
-                android:gravity="center"
-                android:fontFamily="@font/noto_sans_cjkkr_bold"
-                android:includeFontPadding="false"
-                android:text="생활"
-                android:textColor="@drawable/selector_category_text_color"
-                android:textSize="15dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/selector_category_bg"
                 android:button="@null"
-                android:background="@drawable/selector_category_bg"/>/>
+                android:gravity="center"
+                android:text="생활"
+                style="@style/category_text_style"/>
 
             <RadioButton
                 android:id="@+id/all"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="30dp"
-                android:layout_below="@id/employment"
-                android:gravity="center"
-                android:fontFamily="@font/noto_sans_cjkkr_bold"
-                android:includeFontPadding="false"
-                android:text="전체"
-                android:textColor="@drawable/selector_category_text_color"
-                android:textSize="15dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/selector_category_bg"
                 android:button="@null"
-                android:background="@drawable/selector_category_bg"/>/>
-        </RelativeLayout>
-    </RadioGroup>
+                android:gravity="center"
+                android:text="전체"
+                style="@style/category_text_style"/>
+        </RadioGroup>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -147,13 +145,17 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/btn_default_bg"
+        android:background="@drawable/btn_default_unact_bg"
         android:fontFamily="@font/noto_sans_cjkkr_bold"
         android:includeFontPadding="false"
-        android:text="완료"
+        android:text="다음"
         android:textColor="@color/white"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:enabled="false"
+        android:onClick="onClick"
+        style="?android:attr/borderlessButtonStyle"/>
 </LinearLayout>

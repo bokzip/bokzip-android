@@ -47,6 +47,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/search_edit_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/btn_search_box_bg"
@@ -64,13 +65,17 @@
             android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:paddingLeft="10dp"
             android:layout_gravity="center_vertical|right"
             android:layout_marginRight="15dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_search_delete" />
+            android:src="@drawable/ic_search_delete"
+            android:onClick="onClick"/>
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/cur_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -122,13 +127,16 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/complete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/btn_default_bg"
+        android:background="@drawable/btn_default_unact_bg"
         android:fontFamily="@font/noto_sans_cjkkr_bold"
         android:includeFontPadding="false"
-        android:text="완료"
+        android:text="건너뛰기"
         android:textColor="@color/white"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:onClick="onClick"
+        style="?android:attr/borderlessButtonStyle"/>
 </LinearLayout>

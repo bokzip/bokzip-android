@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.unionz.bokzip.FilterBottomSheet
+import com.unionz.bokzip.IntroActivity
 import com.unionz.bokzip.R
 import com.unionz.bokzip.adapter.BokjiItemAdapter
 //import com.unionz.bokzip.adapter.BokjiItemAdapter
@@ -51,8 +52,8 @@ class RecommendFragment: Fragment() {
         val gridLayoutManager = GridLayoutManager(requireContext(), 2)
         recyclerview.layoutManager = gridLayoutManager
 
-        val category = MainActivity.prefs.getCategory("None")
-        if(category != "None"){
+        val category = IntroActivity.prefs.getCategory()
+        if(category != ""){
             category_textview.setText(category)
         }else{
             category_textview.setText("중앙부처 복지")
@@ -62,6 +63,5 @@ class RecommendFragment: Fragment() {
             val bottomSheet = FilterBottomSheet()
             bottomSheet.show(parentFragmentManager, bottomSheet.tag);
         }
-
     }
 }

@@ -20,14 +20,14 @@
         <activity android:name=".sign.SignupLocationSetActivity" />
         <activity android:name=".sign.SignupCategorySetActivity" />
         <activity android:name=".sign.SigninActivity" />
-        <activity android:name=".IntroActivity" />
-        <activity android:name=".home.MainActivity">
+        <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".home.MainActivity"/>
     </application>
 
 </manifest>
