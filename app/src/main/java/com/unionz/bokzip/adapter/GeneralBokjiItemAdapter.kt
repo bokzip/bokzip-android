@@ -38,7 +38,7 @@ class GeneralBokjiItemAdapter(private val context: Context, private val dataList
             title.text = bokjiItem.title
 //            title.text = strUtil.setNewLine(bokjiItem.title) @TODO : 타이틀 띄어쓰기 밎 즐바꿈 조정하기
 
-            Glide.with(context).load(bokjiItem.image).into(thumbnail)
+            Glide.with(context).load(bokjiItem.thumbnail).into(thumbnail)
             thumbnail.background = context.resources.getDrawable(R.drawable.rounding_img, null)
             thumbnail.setClipToOutline(true)
 
