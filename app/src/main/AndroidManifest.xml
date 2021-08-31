@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.unionz.bokzip">
-
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -12,14 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchResultActivity"></activity>
-        <activity android:name=".search.SearchActivity" />
-        <activity android:name=".MyActivity" />
-        <activity android:name=".DetailActivity" />
-        <activity android:name=".sign.SignupLocationSetActivity" />
-        <activity android:name=".sign.SignupCategorySetActivity" />
-        <activity android:name=".sign.SigninActivity" />
         <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +21,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.MainActivity"/>
+        <activity android:name=".sign.SigninActivity" />
+        <activity android:name=".sign.SignupLocationSetActivity" />
+        <activity android:name=".sign.SignupCategorySetActivity" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".GeneralDetaillActivity" />
+        <activity android:name=".SearchResultActivity"></activity>
+        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".MyActivity" />
     </application>
 
 </manifest>
