@@ -24,17 +24,17 @@ class SignupCategorySetActivity : AppCompatActivity() {
                 education.id -> {
                     if (education.isChecked)
                         category_radio_group_two.clearCheck()
-                    categoryResult = education.text.toString()
+                    categoryResult = "교육지원"
                 }
                 employment.id -> {
                     if (employment.isChecked)
                         category_radio_group_two.clearCheck()
-                    categoryResult = employment.text.toString()
+                    categoryResult = "고용지원"
                 }
                 health.id -> {
                     if (health.isChecked)
                         category_radio_group_two.clearCheck()
-                    categoryResult = health.text.toString()
+                    categoryResult = "건강지원"
                 }
             }
 
@@ -49,12 +49,12 @@ class SignupCategorySetActivity : AppCompatActivity() {
                 life.id -> {
                     if (life.isChecked)
                         category_radio_group_one.clearCheck()
-                    categoryResult = life.text.toString()
+                    categoryResult = "생활지원"
                 }
                 all.id -> {
                     if (all.isChecked)
                         category_radio_group_one.clearCheck()
-                    categoryResult = all.text.toString()
+                    categoryResult = "전체"
                 }
             }
 

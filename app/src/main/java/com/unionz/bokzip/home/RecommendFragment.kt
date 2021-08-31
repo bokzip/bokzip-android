@@ -1,6 +1,7 @@
 package com.unionz.bokzip.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,51 +10,37 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.unionz.bokzip.FilterBottomSheet
 import com.unionz.bokzip.IntroActivity
 import com.unionz.bokzip.R
-import com.unionz.bokzip.adapter.BokjiItemAdapter
-//import com.unionz.bokzip.adapter.BokjiItemAdapter
-import com.unionz.bokzip.model.BokjiItem
-import com.unionz.bokzip.util.StrUtil
+import com.unionz.bokzip.adapter.RecommendBokjiItemAdapter
+import com.unionz.bokzip.model.RecommendBokjiItem
+import com.unionz.bokzip.service.RemoteService
 import kotlinx.android.synthetic.main.fragment_tap_recommend.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RecommendFragment: Fragment() {
+    private val TAG = "추천 탭"
+    private val api = RemoteService.create()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val view: View = inflater.inflate(R.layout.fragment_tap_recommend, container, false)
+        getBokjiItem() // 추천 복지 리스트 가져오기
 
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var strUtil = StrUtil()
-
-        // @deprecated : 테스트용 데이터
-        var bokziList = arrayListOf<BokjiItem>(
-            BokjiItem(0, strUtil.setNewLine("어촌생활 돌봄지원"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", false),
-            BokjiItem(1, strUtil.setNewLine("산재근로자 케어센터지원"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", false),
-            BokjiItem(2, strUtil.setNewLine("건강보험료 할인"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", true),
-
-            BokjiItem(3, strUtil.setNewLine("이동통신요금감면"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", true),
-            BokjiItem(4, strUtil.setNewLine("교육복지 우선지원사업"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", true),
-            BokjiItem(5, strUtil.setNewLine("청소년방과후아카데미운영지원"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", false),
-
-            BokjiItem(6, strUtil.setNewLine("공공기관 편의시설 설치사업"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", false),
-            BokjiItem(7, strUtil.setNewLine("사랑나누리 운영"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", true),
-            BokjiItem(8, strUtil.setNewLine("통합사례관리가구 주거환경개선사업"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", true),
-
-            BokjiItem(9, strUtil.setNewLine("공공하수도 사용료 지원"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", false),
-            BokjiItem(10, strUtil.setNewLine("장애인연금"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", false),
-            BokjiItem(11, strUtil.setNewLine("방과후 보육료 지원"), "https://images.unsplash.com/photo-1532330384785-f94c84352e91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=999&q=80", true)
-        )
-
-        val adapter = BokjiItemAdapter(requireContext(), bokziList, 1)
+    fun init(bokziList:ArrayList<RecommendBokjiItem>){
+        val adapter = RecommendBokjiItemAdapter(requireContext(), bokziList)
         recyclerview.adapter = adapter
 
         // 2개의 열을 갖는 GridLayout
         val gridLayoutManager = GridLayoutManager(requireContext(), 2)
         recyclerview.layoutManager = gridLayoutManager
 
+        // 사용자가 설정한 관심 분야가 존재할 경우 상단 타이틀에 분야정보를 디스플레이
         val category = IntroActivity.prefs.getCategory()
-        if(category != ""){
+        if(category != "전체"){
             category_textview.setText(category)
         }else{
             category_textview.setText("중앙부처 복지")
@@ -63,5 +50,27 @@ class RecommendFragment: Fragment() {
             val bottomSheet = FilterBottomSheet()
             bottomSheet.show(parentFragmentManager, bottomSheet.tag);
         }
+    }
+
+    // 사용자 맞춤정보에 해당하는 복지 리스트 가져오기
+    private fun getBokjiItem(){
+        val category = IntroActivity.prefs.getCategory() // 사용자의 관심 분야에 해당하는 복지를 요청
+        api.getRecommendBokji(category).enqueue(object : Callback<ArrayList<RecommendBokjiItem>> {
+            override fun onResponse(call: Call<ArrayList<RecommendBokjiItem>>, response: Response<ArrayList<RecommendBokjiItem>>) {
+                Log.i(TAG, response.body().toString())
+                // 통신 성공
+                if(!response.body().toString().isEmpty()) {
+                    init(response.body()!!)
+                } else{
+                    Log.i(TAG,"요청 받은 리소스를 찾을 수 없습니다.")
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<RecommendBokjiItem>>, t: Throwable) {
+                // 통신 실패
+                Log.i(TAG, t.message.toString())
+                Log.i(TAG,"서버 연결에 실패했습니다.")
+            }
+        })
     }
 }

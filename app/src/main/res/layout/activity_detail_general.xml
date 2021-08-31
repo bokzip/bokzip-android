@@ -40,7 +40,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginBottom="30dp"
-                    android:paddingHorizontal="20dp"
+                    android:layout_marginHorizontal="20dp"
                     android:includeFontPadding="false"
                     android:fontFamily="@font/noto_sans_cjkkr_black"
                     android:textColor="@color/white"
@@ -80,65 +80,6 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="30dp">
-
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:fontFamily="@font/noto_sans_cjkkr_bold"
-                        android:id="@+id/target"
-                        android:includeFontPadding="false"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="지원 대상"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:fontFamily="@font/noto_sans_cjkkr_regular"
-                        android:id="@+id/target_text"
-                        android:includeFontPadding="false"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="13dp"
-                        tools:text="test" />
-                </LinearLayout>
-
-                <!-- 선정기준은 중앙부처 복지만 디스플레이-->
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:fontFamily="@font/noto_sans_cjkkr_bold"
-                        android:id="@+id/criteria"
-                        android:includeFontPadding="false"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:layout_width="wrap_content"
-                        android:text="선정 기준"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:fontFamily="@font/noto_sans_cjkkr_regular"
-                        android:id="@+id/criterias_text"
-                        android:includeFontPadding="false"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="13dp"
-                        tools:text="test" />
-
-                </LinearLayout>
-
                 <LinearLayout
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -149,7 +90,6 @@
                         android:id="@+id/description"
                         android:includeFontPadding="false"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
                         android:layout_width="wrap_content"
                         android:text="지원 내용"
                         android:textColor="@color/black"
@@ -165,67 +105,9 @@
                         android:textColor="@color/black"
                         android:textSize="13dp"
                         tools:text="test" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:fontFamily="@font/noto_sans_cjkkr_bold"
-                        android:id="@+id/how_to_apply"
-                        android:includeFontPadding="false"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:layout_width="wrap_content"
-                        android:text="신청 방법"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:fontFamily="@font/noto_sans_cjkkr_regular"
-                        android:id="@+id/how_to_apply_text"
-                        android:includeFontPadding="false"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="13dp"
-                        tools:text="test" />
-
                 </LinearLayout>
 
 
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/contact"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:includeFontPadding="false"
-                        android:fontFamily="@font/noto_sans_cjkkr_bold"
-                        android:text="문의처"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:id="@+id/contact_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:includeFontPadding="false"
-                        android:fontFamily="@font/noto_sans_cjkkr_regular"
-                        android:textColor="@color/black"
-                        android:textSize="13dp"
-                        tools:text="test" />
-
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
