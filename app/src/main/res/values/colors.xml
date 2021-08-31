@@ -12,5 +12,5 @@
     <color name="darkGray">#999C9C</color>
     <color name="black">#2C3130</color>
     <color name="white">#FFFFFF</color>
-    <color name="ultraSemiTransparent">#10000000</color>
+    <color name="ultraSemiTransparent">#30000000</color>
 </resources>
