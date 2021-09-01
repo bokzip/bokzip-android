@@ -1,17 +1,28 @@
 package com.unionz.bokzip
 
-import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.unionz.bokzip.adapter.LocationItemAdapter
 import kotlinx.android.synthetic.main.bottom_sheet_filter.*
 import kotlinx.android.synthetic.main.bottom_sheet_filter.view.*
 
-class FilterBottomSheet : BottomSheetDialogFragment() {
+class FilterBottomSheet : BottomSheetDialogFragment(){
+    private lateinit var adapter: LocationItemAdapter
+    private var handler: Handler = Handler(Looper.getMainLooper())
+    private lateinit var workRunnable : Runnable
+    private val DELAY : Long = 500
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -19,6 +30,9 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val view: View = inflater.inflate(R.layout.bottom_sheet_filter, container, false)
+
+        layoutInit(view)
+
         view.back.setOnClickListener {
             dismiss()
             //수정.
@@ -82,7 +96,7 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
         }
 
         //필터 - 카테고리 아랫줄
-       if(rgCategoryTwo != null){
+        if(rgCategoryTwo != null){
             rgCategoryTwo.setOnCheckedChangeListener { group, checkedId ->
                 when(checkedId){
                     life.id -> {
@@ -99,6 +113,11 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
                     }
                 }
             }
+        }
+
+        //필터 - 거주지
+        view.delete.setOnClickListener {
+            view.location_text.setText(null)
         }
 
         //필터 - 정렬
@@ -122,5 +141,30 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
         return view
     }
 
+    private fun layoutInit(view : View) {
+        //필터 - 거주지(시/군/구로 검색)
+
+        var editText = view.location_text
+        var locationRecyclerView : RecyclerView = view.findViewById(R.id.location_recyclerview)
+        //don't change the layout size of the RecyclerView(가변)
+        locationRecyclerView.setHasFixedSize(true)
+        adapter = LocationItemAdapter(requireContext())
+
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                val keyword = s.toString()
+                workRunnable = Runnable { adapter.filter(keyword) }
+                handler.removeCallbacks(workRunnable)
+                handler.postDelayed(workRunnable, DELAY)
+            }
+        })
+
+        val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager(requireContext())
+
+        locationRecyclerView.setLayoutManager(layoutManager)
+        locationRecyclerView.setAdapter(adapter)
+    }
 
 }

@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:foreground="@color/ultraSemiTransparent"
         android:scaleType="centerCrop"
-        tools:src="@color/black" />
+        tools:src="@color/black"/>
 
     <TextView
         android:id="@+id/title"
