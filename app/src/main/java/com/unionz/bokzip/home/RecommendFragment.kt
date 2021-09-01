@@ -14,6 +14,7 @@ import com.unionz.bokzip.adapter.RecommendBokjiItemAdapter
 import com.unionz.bokzip.model.RecommendBokjiItem
 import com.unionz.bokzip.service.RemoteService
 import kotlinx.android.synthetic.main.fragment_tap_recommend.*
+import kotlinx.android.synthetic.main.fragment_tap_recommend.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +27,11 @@ class RecommendFragment: Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         val view: View = inflater.inflate(R.layout.fragment_tap_recommend, container, false)
         getBokjiItem() // 추천 복지 리스트 가져오기
+
+        view.btn_filter.setOnClickListener {
+            val bottomSheet = FilterBottomSheet()
+            bottomSheet.show(parentFragmentManager, bottomSheet.tag);
+        }
 
         return view
     }
@@ -44,11 +50,6 @@ class RecommendFragment: Fragment() {
             category_textview.setText(category)
         }else{
             category_textview.setText("중앙부처 복지")
-        }
-
-        btn_filter.setOnClickListener {
-            val bottomSheet = FilterBottomSheet()
-            bottomSheet.show(parentFragmentManager, bottomSheet.tag);
         }
     }
 
