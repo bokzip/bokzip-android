@@ -6,6 +6,7 @@ import com.unionz.bokzip.model.GeneralBokjiContent
 import com.unionz.bokzip.model.GeneralBokjiItem
 import com.unionz.bokzip.model.RecommendBokjiContent
 import com.unionz.bokzip.model.RecommendBokjiItem
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -39,6 +40,12 @@ interface RemoteService {
     fun saveGeneralScrap(@Path("id") id: String): Call<GeneralBokjiItem>
     @DELETE("/post/general/{id}")
     fun removeGeneralScrap(@Path("id") id: String): Call<Void>
+
+    // 조회수
+    @GET("/post/center/view/{id}")
+    fun getCenterViewCount(@Path("id") id: String): Call<ResponseBody>
+    @GET("/post/general/view/{id}")
+    fun getGeneralViewCount(@Path("id") id: String): Call<ResponseBody>
 
     // static 처럼 공유객체로 사용가능, 모든 인스턴스가 공유하는 객체로서 동작
     companion object {

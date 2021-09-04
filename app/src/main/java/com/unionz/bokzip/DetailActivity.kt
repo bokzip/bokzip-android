@@ -6,20 +6,25 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.unionz.bokzip.model.RecommendBokjiContent
 import com.unionz.bokzip.service.RemoteLib
 import com.unionz.bokzip.service.RemoteService
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_error.*
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class DetailActivity : AppCompatActivity(){
     private val TAG = "복지정보 상세 조회"
     private val api = RemoteService.create()
     lateinit var id:String // 복지 정보의 id
+    private var viewModel: itemVM? = null
+    private val viewModel: itemVM by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +33,7 @@ class DetailActivity : AppCompatActivity(){
 
         if (id != "null"){ // id값이 존재하는 경우
             setContentView(R.layout.activity_detail)
+            getViewCount(id)
             getBokjiContent(id)
         } else{ // 시스템 상 오류로 id값을 받아오지 못한 경우, 에러페이지 띄우기
             setContentView(R.layout.activity_error)
@@ -35,10 +41,12 @@ class DetailActivity : AppCompatActivity(){
                 onBackPressed()
             }
         }
+
+        viewModel = ViewModelProvider(this).get(itemVM::class.java)
     }
 
     // 각종 뷰 초기화
-    fun init(item : RecommendBokjiContent){
+    fun init(item: RecommendBokjiContent){
         var isClicked = false
         bokji_title.text = item.title
 
@@ -58,11 +66,13 @@ class DetailActivity : AppCompatActivity(){
                 RemoteLib(TAG).removeCenterScrap(item.id)
                 scrap.setImageDrawable(this.getDrawable(R.drawable.ic_unscrap))
                 Toast.makeText(this, "스크랩 해제되었습니다.", Toast.LENGTH_SHORT).show()
+                viewModel?.setIsUpdated(false)
             } else {
                 isClicked = true
                 RemoteLib(TAG).saveCenterScrap(item.id)
                 scrap.setImageDrawable(this.getDrawable(R.drawable.ic_scrap))
                 Toast.makeText(this, "스크랩 되었습니다.", Toast.LENGTH_SHORT).show()
+                viewModel?.setIsUpdated(true)
             }
         }
 
@@ -87,22 +97,44 @@ class DetailActivity : AppCompatActivity(){
     }
 
     // id값에 해당하는 복지 정보 가져오기
-    private fun getBokjiContent(id:String){
+    private fun getBokjiContent(id: String){
         api.getDetailRecommendBokji(id).enqueue(object : Callback<RecommendBokjiContent> {
-            override fun onResponse(call: Call<RecommendBokjiContent>, response: Response<RecommendBokjiContent>) {
+            override fun onResponse(
+                call: Call<RecommendBokjiContent>,
+                response: Response<RecommendBokjiContent>
+            ) {
                 Log.i(TAG, response.body().toString())
                 // 통신 성공
-                if(!response.body().toString().isEmpty()) {
+                if (!response.body().toString().isEmpty()) {
                     init(response.body()!!)
-                } else{
-                    Log.i(TAG,"요청 받은 리소스를 찾을 수 없습니다.")
+                } else {
+                    Log.i(TAG, "요청 받은 리소스를 찾을 수 없습니다.")
                 }
             }
 
             override fun onFailure(call: Call<RecommendBokjiContent>, t: Throwable) {
                 // 통신 실패
                 Log.i(TAG, t.message.toString())
-                Log.i(TAG,"서버 연결에 실패했습니다.")
+                Log.i(TAG, "서버 연결에 실패했습니다.")
+            }
+        })
+    }
+
+    // 조회수 증가
+    private fun getViewCount(id: String){
+        api.getCenterViewCount(id).enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                Log.i(TAG, response.body().toString())
+                // 통신 성공
+                if (!response.body().toString().isEmpty()) {
+                    Log.i(TAG, "조회 수 증가 성공")
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                // 통신 실패
+                Log.i(TAG, t.message.toString())
+                Log.i(TAG, "서버 연결에 실패했습니다.")
             }
         })
     }
