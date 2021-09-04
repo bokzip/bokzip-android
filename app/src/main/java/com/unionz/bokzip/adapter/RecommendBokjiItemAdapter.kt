@@ -17,6 +17,7 @@ import com.unionz.bokzip.DetailActivity
 import com.unionz.bokzip.OnThrottleClickListener
 import com.unionz.bokzip.R
 import com.unionz.bokzip.model.RecommendBokjiItem
+import com.unionz.bokzip.service.RemoteLib
 
 /**
  * @param type :
@@ -26,6 +27,9 @@ import com.unionz.bokzip.model.RecommendBokjiItem
 class RecommendBokjiItemAdapter(private val context: Context, private val dataList: ArrayList<RecommendBokjiItem>) :
     RecyclerView.Adapter<RecommendBokjiItemAdapter.ItemViewHolder>() {
 //    var strUtil = StrUtil()
+
+    private val TAG = "추천탭 어뎁터"
+    val centerModule = RemoteLib(TAG)
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val title = itemView.findViewById<TextView>(R.id.title)
@@ -49,10 +53,12 @@ class RecommendBokjiItemAdapter(private val context: Context, private val dataLi
             scrap.setOnClickListener { view ->
                 if (isClicked) { // 스크랩 해제
                     isClicked = false
+                    centerModule.removeCenterScrap(bokjiItem.id)
                     scrap.setImageDrawable(context.getDrawable(R.drawable.ic_unscrap))
                     Toast.makeText(context, "스크랩 해제되었습니다.", Toast.LENGTH_SHORT).show()
                 } else { // 스크랩 하기
                     isClicked = true
+                    centerModule.saveCenterScrap(bokjiItem.id)
                     scrap.setImageDrawable(context.getDrawable(R.drawable.ic_scrap))
                     Toast.makeText(context, "스크랩 되었습니다.", Toast.LENGTH_SHORT).show()
                 }

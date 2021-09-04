@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.unionz.bokzip.model.RecommendBokjiContent
+import com.unionz.bokzip.service.RemoteLib
 import com.unionz.bokzip.service.RemoteService
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_error.*
@@ -54,10 +55,12 @@ class DetailActivity : AppCompatActivity(){
         scrap.setOnClickListener { view ->
             if (isClicked) {
                 isClicked = false
+                RemoteLib(TAG).removeCenterScrap(item.id)
                 scrap.setImageDrawable(this.getDrawable(R.drawable.ic_unscrap))
                 Toast.makeText(this, "스크랩 해제되었습니다.", Toast.LENGTH_SHORT).show()
             } else {
                 isClicked = true
+                RemoteLib(TAG).saveCenterScrap(item.id)
                 scrap.setImageDrawable(this.getDrawable(R.drawable.ic_scrap))
                 Toast.makeText(this, "스크랩 되었습니다.", Toast.LENGTH_SHORT).show()
             }
