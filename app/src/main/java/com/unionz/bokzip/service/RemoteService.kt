@@ -19,6 +19,8 @@ interface RemoteService {
     // 추천 탭
     @GET("/post/center/category/{category}")
     fun getRecommendBokji(@Path("category") category: String): Call<ArrayList<RecommendBokjiItem>>
+
+    // 일반 탭
     @GET("/post/generals")
     fun getGeneralBokji(): Call<ArrayList<GeneralBokjiItem>>
 
@@ -33,6 +35,10 @@ interface RemoteService {
     fun saveCenterScrap(@Path("id") id: String): Call<RecommendBokjiItem>
     @DELETE("/post/center/{id}")
     fun removeCenterScrap(@Path("id") id: String): Call<Void>
+    @POST("/post/general/{id}")
+    fun saveGeneralScrap(@Path("id") id: String): Call<GeneralBokjiItem>
+    @DELETE("/post/general/{id}")
+    fun removeGeneralScrap(@Path("id") id: String): Call<Void>
 
     // static 처럼 공유객체로 사용가능, 모든 인스턴스가 공유하는 객체로서 동작
     companion object {
