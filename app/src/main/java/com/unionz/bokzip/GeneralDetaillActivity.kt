@@ -55,11 +55,14 @@ class GeneralDetaillActivity : AppCompatActivity(){ // @TODO : 다이얼로그�
                 isClicked = false
                 scrap.setImageDrawable(this.getDrawable(R.drawable.ic_unscrap))
                 Toast.makeText(this, "스크랩 해제되었습니다.", Toast.LENGTH_SHORT).show()
+                scrap_cnt.text = (Integer.parseInt(scrap_cnt.text.toString())-1).toString()
             } else {
                 isClicked = true
                 scrap.setImageDrawable(this.getDrawable(R.drawable.ic_scrap))
                 Toast.makeText(this, "스크랩 되었습니다.", Toast.LENGTH_SHORT).show()
+                scrap_cnt.text = (Integer.parseInt(scrap_cnt.text.toString())+1).toString()
             }
+            IntroActivity.prefs.setIsUpdate(true)
         }
 
         // 각 TextView의 text값 설정

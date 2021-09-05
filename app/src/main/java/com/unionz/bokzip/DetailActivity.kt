@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.unionz.bokzip.model.RecommendBokjiContent
 import com.unionz.bokzip.service.RemoteLib
@@ -19,12 +18,17 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class DetailActivity : AppCompatActivity(){
+class DetailActivity: AppCompatActivity(){
     private val TAG = "복지정보 상세 조회"
     private val api = RemoteService.create()
     lateinit var id:String // 복지 정보의 id
-    private var viewModel: itemVM? = null
-    private val viewModel: itemVM by activityViewModels()
+
+//    private var _isUpdated = false
+//    override fun updateSet(isUpdated: Boolean) {
+//        _isUpdated = isUpdated
+//    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +45,6 @@ class DetailActivity : AppCompatActivity(){
                 onBackPressed()
             }
         }
-
-        viewModel = ViewModelProvider(this).get(itemVM::class.java)
     }
 
     // 각종 뷰 초기화
@@ -66,14 +68,15 @@ class DetailActivity : AppCompatActivity(){
                 RemoteLib(TAG).removeCenterScrap(item.id)
                 scrap.setImageDrawable(this.getDrawable(R.drawable.ic_unscrap))
                 Toast.makeText(this, "스크랩 해제되었습니다.", Toast.LENGTH_SHORT).show()
-                viewModel?.setIsUpdated(false)
+                scrap_cnt.text = (Integer.parseInt(scrap_cnt.text.toString())-1).toString()
             } else {
                 isClicked = true
                 RemoteLib(TAG).saveCenterScrap(item.id)
                 scrap.setImageDrawable(this.getDrawable(R.drawable.ic_scrap))
                 Toast.makeText(this, "스크랩 되었습니다.", Toast.LENGTH_SHORT).show()
-                viewModel?.setIsUpdated(true)
+                scrap_cnt.text = (Integer.parseInt(scrap_cnt.text.toString())+1).toString()
             }
+            IntroActivity.prefs.setIsUpdate(true)
         }
 
         // 각 TextView의 text값 설정

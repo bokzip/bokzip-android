@@ -32,4 +32,13 @@ class PreferenceUtil(context: Context) {
     fun setLocation(location: String) {
         prefs.edit().putString("location", location).apply()
     }
+
+    // 스크랩 업데이트 여부
+    fun getIsUpdate(): Boolean {
+        return prefs.getBoolean("isUpdate", false)
+    }
+
+    fun setIsUpdate(isUpdate: Boolean) {
+        prefs.edit().putBoolean("isUpdate", isUpdate).apply()
+    }
 }

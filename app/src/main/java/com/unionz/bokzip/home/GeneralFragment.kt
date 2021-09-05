@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.unionz.bokzip.IntroActivity
 import com.unionz.bokzip.R
 import com.unionz.bokzip.adapter.GeneralBokjiItemAdapter
 import com.unionz.bokzip.model.GeneralBokjiItem
 import com.unionz.bokzip.service.RemoteService
+import com.unionz.bokzip.util.PreferenceUtil
 import kotlinx.android.synthetic.main.fragment_tap_general.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -36,6 +38,16 @@ class GeneralFragment: Fragment() {
         getBokjiItem() // 일반 복지 리스트 가져오기
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // GeneralDetailActivity에서 변경사항이 존재하는 경우 아이템 갱신, 추후 코드 수정할 예정
+        var pref : PreferenceUtil = IntroActivity.prefs
+        if (pref.getIsUpdate()) {
+            getBokjiItem()
+            pref.setIsUpdate(false)
+        }
     }
 
     fun init(bokjiList:ArrayList<GeneralBokjiItem>){
