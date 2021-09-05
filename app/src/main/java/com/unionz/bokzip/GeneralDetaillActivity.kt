@@ -9,6 +9,7 @@ import com.unionz.bokzip.model.GeneralBokjiContent
 import com.unionz.bokzip.service.RemoteService
 import kotlinx.android.synthetic.main.activity_detail_general.*
 import kotlinx.android.synthetic.main.activity_error.*
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +25,7 @@ class GeneralDetaillActivity : AppCompatActivity(){ // @TODO : 다이얼로그�
 
         if (id != "null"){ // id값이 존재하는 경우
             setContentView(R.layout.activity_detail_general)
+            getViewCount(id)
             getBokjiContent(id)
         } else{ // 시스템 상 오류로 id값을 받아오지 못한 경우, 에러페이지 띄우기
             setContentView(R.layout.activity_error)
@@ -53,11 +55,14 @@ class GeneralDetaillActivity : AppCompatActivity(){ // @TODO : 다이얼로그�
                 isClicked = false
                 scrap.setImageDrawable(this.getDrawable(R.drawable.ic_unscrap))
                 Toast.makeText(this, "스크랩 해제되었습니다.", Toast.LENGTH_SHORT).show()
+                scrap_cnt.text = (Integer.parseInt(scrap_cnt.text.toString())-1).toString()
             } else {
                 isClicked = true
                 scrap.setImageDrawable(this.getDrawable(R.drawable.ic_scrap))
                 Toast.makeText(this, "스크랩 되었습니다.", Toast.LENGTH_SHORT).show()
+                scrap_cnt.text = (Integer.parseInt(scrap_cnt.text.toString())+1).toString()
             }
+            IntroActivity.prefs.setIsUpdate(true)
         }
 
         // 각 TextView의 text값 설정
@@ -84,6 +89,25 @@ class GeneralDetaillActivity : AppCompatActivity(){ // @TODO : 다이얼로그�
             }
 
             override fun onFailure(call: Call<GeneralBokjiContent>, t: Throwable) {
+                // 통신 실패
+                Log.i(TAG, t.message.toString())
+                Log.i(TAG,"서버 연결에 실패했습니다.")
+            }
+        })
+    }
+
+    // 조회수 증가
+    private fun getViewCount(id:String){
+        api.getGeneralViewCount(id).enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                Log.i(TAG, response.body().toString())
+                // 통신 성공
+                if(!response.body().toString().isEmpty()) {
+                    Log.i(TAG,"조회 수 증가 성공")
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 // 통신 실패
                 Log.i(TAG, t.message.toString())
                 Log.i(TAG,"서버 연결에 실패했습니다.")
