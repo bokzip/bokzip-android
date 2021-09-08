@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -17,11 +16,11 @@ import com.unionz.bokzip.adapter.LocationItemAdapter
 import kotlinx.android.synthetic.main.bottom_sheet_filter.*
 import kotlinx.android.synthetic.main.bottom_sheet_filter.view.*
 
-class FilterBottomSheet : BottomSheetDialogFragment(){
+class FilterBottomSheet : BottomSheetDialogFragment() {
     private lateinit var adapter: LocationItemAdapter
     private var handler: Handler = Handler(Looper.getMainLooper())
-    private lateinit var workRunnable : Runnable
-    private val DELAY : Long = 500
+    private lateinit var workRunnable: Runnable
+    private val DELAY: Long = 500
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,79 +36,74 @@ class FilterBottomSheet : BottomSheetDialogFragment(){
             dismiss()
             //수정.
         }
-        view.category.isSelected=true
+        view.category.isSelected = true
 
         view.category.setOnClickListener {
             view.filter_location.visibility = View.GONE
-            location.isSelected=false
+            location.isSelected = false
             view.filter_sort.visibility = View.GONE
-            sort.isSelected=false
+            sort.isSelected = false
             view.filter_category.visibility = View.VISIBLE
-            category.isSelected=true
+            category.isSelected = true
         }
         view.location.setOnClickListener {
             view.filter_category.visibility = View.GONE
-            category.isSelected=false
+            category.isSelected = false
             view.filter_sort.visibility = View.GONE
-            sort.isSelected=false
+            sort.isSelected = false
             view.filter_location.visibility = View.VISIBLE
-            location.isSelected=true
+            location.isSelected = true
         }
         view.sort.setOnClickListener {
             view.filter_category.visibility = View.GONE
-            category.isSelected=false
+            category.isSelected = false
             view.filter_location.visibility = View.GONE
-            location.isSelected=false
+            location.isSelected = false
             view.filter_sort.visibility = View.VISIBLE
-            sort.isSelected=true
+            sort.isSelected = true
         }
 
         //필터 - 카테고리
-        val rgCategoryOne : RadioGroup = view.category_radio_group_one
-        val rgCategoryTwo : RadioGroup = view.category_radio_group_two
-        var categoryResult : String = "선택된 카테고리"
+        val rgCategoryOne: RadioGroup = view.category_radio_group_one
+        val rgCategoryTwo: RadioGroup = view.category_radio_group_two
+        var categoryResult: String = "선택된 카테고리"
 
         //필터 - 카테고리 윗줄
-        if(rgCategoryOne != null){
+        if (rgCategoryOne != null) {
             rgCategoryOne.setOnCheckedChangeListener { group, checkedId ->
-                when(checkedId){
+                when (checkedId) {
                     education.id -> {
                         if (education.isChecked)
                             rgCategoryTwo.clearCheck()
                         categoryResult = education.text.toString()
-                        Toast.makeText(context, categoryResult, Toast.LENGTH_SHORT).show()
                     }
                     employment.id -> {
                         if (employment.isChecked)
                             rgCategoryTwo.clearCheck()
                         categoryResult = employment.text.toString()
-                        Toast.makeText(context, categoryResult, Toast.LENGTH_SHORT).show()
                     }
                     health.id -> {
                         if (health.isChecked)
                             rgCategoryTwo.clearCheck()
                         categoryResult = health.text.toString()
-                        Toast.makeText(context, categoryResult, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
 
         //필터 - 카테고리 아랫줄
-        if(rgCategoryTwo != null){
+        if (rgCategoryTwo != null) {
             rgCategoryTwo.setOnCheckedChangeListener { group, checkedId ->
-                when(checkedId){
+                when (checkedId) {
                     life.id -> {
                         if (life.isChecked)
                             rgCategoryOne.clearCheck()
                         categoryResult = life.text.toString()
-                        Toast.makeText(context, categoryResult, Toast.LENGTH_SHORT).show()
                     }
                     all.id -> {
                         if (all.isChecked)
                             rgCategoryOne.clearCheck()
                         categoryResult = all.text.toString()
-                        Toast.makeText(context, categoryResult, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -121,18 +115,18 @@ class FilterBottomSheet : BottomSheetDialogFragment(){
         }
 
         //필터 - 정렬
-        val rgSort : RadioGroup = view.sort_radio_group
-        var sortResult : Int = 100
-        if(rgSort != null){
+        val rgSort: RadioGroup = view.sort_radio_group
+        var sortResult: Int = 100
+        if (rgSort != null) {
             rgSort.setOnCheckedChangeListener { group, checkedId ->
-                when(checkedId){
+                when (checkedId) {
                     star_count_order.id -> {
                         sortResult = 0
-                        Toast.makeText(context, sortResult.toString(), Toast.LENGTH_SHORT).show()
+                        // Toast.makeText(context, sortResult.toString(), Toast.LENGTH_SHORT).show()
                     }
                     view_count_order.id -> {
                         sortResult = 1
-                        Toast.makeText(context, sortResult.toString(), Toast.LENGTH_SHORT).show()
+                        // Toast.makeText(context, sortResult.toString(), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -141,11 +135,11 @@ class FilterBottomSheet : BottomSheetDialogFragment(){
         return view
     }
 
-    private fun layoutInit(view : View) {
+    private fun layoutInit(view: View) {
         //필터 - 거주지(시/군/구로 검색)
 
         var editText = view.location_text
-        var locationRecyclerView : RecyclerView = view.findViewById(R.id.location_recyclerview)
+        var locationRecyclerView: RecyclerView = view.findViewById(R.id.location_recyclerview)
         //don't change the layout size of the RecyclerView(가변)
         locationRecyclerView.setHasFixedSize(true)
         adapter = LocationItemAdapter(requireContext())
@@ -161,7 +155,7 @@ class FilterBottomSheet : BottomSheetDialogFragment(){
             }
         })
 
-        val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager(requireContext())
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(requireContext())
 
         locationRecyclerView.setLayoutManager(layoutManager)
         locationRecyclerView.setAdapter(adapter)
