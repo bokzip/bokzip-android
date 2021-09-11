@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_my" />
+            android:src="@drawable/ic_my"
+            android:onClick="onClick"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"

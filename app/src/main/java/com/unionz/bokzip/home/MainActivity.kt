@@ -1,12 +1,15 @@
 package com.unionz.bokzip.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.unionz.bokzip.MyActivity
 import com.unionz.bokzip.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -43,8 +46,15 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(tab_layout, view_pager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+    }
 
-
+    fun onClick(v: View) {
+        when (v.id) {
+            R.id.my -> {
+                val intent = Intent(this, MyActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     // 뷰페이저 아이템으로 탭별 프래그먼트 등록
