@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_back"
+            android:onClick="onClick"/>
 
         <TextView
             android:layout_width="wrap_content"

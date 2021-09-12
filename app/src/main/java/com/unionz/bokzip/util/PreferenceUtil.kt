@@ -12,12 +12,12 @@ class PreferenceUtil(context: Context) {
     }
 
     fun setToken(token: String) {
-        prefs.edit().putString("category", token).apply()
+        prefs.edit().putString("token", token).apply()
     }
 
     // 가입시 사용자가 설정한 맞춤 정보 중 관심 분야 정보
     fun getCategory(): String {
-        return prefs.getString("category", "전체").toString()
+        return prefs.getString("category", "지원").toString()
     }
 
     fun setCategory(category: String) {

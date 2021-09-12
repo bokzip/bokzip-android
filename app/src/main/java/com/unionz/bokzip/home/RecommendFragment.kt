@@ -20,10 +20,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class RecommendFragment: Fragment() {
     private val TAG = "추천 탭"
     private val api = RemoteService.create()
+    val pref : PreferenceUtil = IntroActivity.prefs
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +32,9 @@ class RecommendFragment: Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val view: View = inflater.inflate(R.layout.fragment_tap_recommend, container, false)
-        getBokjiItem() // 추천 복지 리스트 가져오기
+
+        pref.setIsUpdate(false)
+        getBokjiItem()
 
         view.btn_filter.setOnClickListener {
             val bottomSheet = FilterBottomSheet()
@@ -45,22 +47,11 @@ class RecommendFragment: Fragment() {
     override fun onResume() {
         super.onResume()
         // DetailActivity에서 변경사항이 존재하는 경우 아이템 갱신, 추후 코드 수정할 예정
-        var pref : PreferenceUtil = IntroActivity.prefs
         if (pref.getIsUpdate()) {
             getBokjiItem()
             pref.setIsUpdate(false)
         }
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        getBokjiItem()
-    }
-//
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//
-//    }
 
     fun init(bokziList: ArrayList<RecommendBokjiItem>){
         val adapter = RecommendBokjiItemAdapter(requireContext(), bokziList)
@@ -72,10 +63,10 @@ class RecommendFragment: Fragment() {
 
         // 사용자가 설정한 관심 분야가 존재할 경우 상단 타이틀에 분야정보를 디스플레이
         val category = IntroActivity.prefs.getCategory()
-        if(category != "전체"){
-            category_textview.setText(category)
+        if(category != "지원"){
+            category_textview.text = category
         }else{
-            category_textview.setText("중앙부처 복지")
+            category_textview.text = "중앙부처 복지"
         }
     }
 
