@@ -18,8 +18,8 @@ import retrofit2.http.Path
 interface RemoteService {
 
     // 추천 탭
-    @GET("/post/center/category/{category}")
-    fun getRecommendBokji(@Path("category") category: String): Call<ArrayList<RecommendBokjiItem>>
+    @GET("/post/centers")
+    fun getRecommendBokji(): Call<ArrayList<RecommendBokjiItem>>
 
     // 일반 탭
     @GET("/post/generals")
