@@ -9,83 +9,89 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.unionz.bokzip.adapter.LocationItemAdapter
+import com.unionz.bokzip.viewmodel.FilterViewModel
 import kotlinx.android.synthetic.main.bottom_sheet_filter.*
-import kotlinx.android.synthetic.main.bottom_sheet_filter.view.*
+import com.unionz.bokzip.databinding.BottomSheetFilterBinding
 
 class FilterBottomSheet : BottomSheetDialogFragment() {
     private lateinit var adapter: LocationItemAdapter
     private var handler: Handler = Handler(Looper.getMainLooper())
     private lateinit var workRunnable: Runnable
     private val DELAY: Long = 500
+    private val viewModel: FilterViewModel by activityViewModels()
+    private lateinit var binding: BottomSheetFilterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        val view: View = inflater.inflate(R.layout.bottom_sheet_filter, container, false)
+        binding = BottomSheetFilterBinding.inflate(inflater, container, false)
 
-        layoutInit(view)
+        init()
 
-        view.back.setOnClickListener {
-            dismiss()
-            //수정.
-        }
-        view.category.isSelected = true
+        return binding.root
+    }
 
-        view.category.setOnClickListener {
-            view.filter_location.visibility = View.GONE
+    private fun init() {
+        binding.locationRecyclerview.setHasFixedSize(true)
+        binding.locationRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+        adapter = LocationItemAdapter(requireContext())
+        binding.locationRecyclerview.adapter = adapter
+
+        binding.category.isSelected = true
+
+        binding.category.setOnClickListener {
+            binding.filterLocation.visibility = View.GONE
             location.isSelected = false
-            view.filter_sort.visibility = View.GONE
+            binding.filterSort.visibility = View.GONE
             sort.isSelected = false
-            view.filter_category.visibility = View.VISIBLE
+            binding.filterCategory.visibility = View.VISIBLE
             category.isSelected = true
         }
-        view.location.setOnClickListener {
-            view.filter_category.visibility = View.GONE
+        binding.location.setOnClickListener {
+            binding.filterCategory.visibility = View.GONE
             category.isSelected = false
-            view.filter_sort.visibility = View.GONE
+            binding.filterSort.visibility = View.GONE
             sort.isSelected = false
-            view.filter_location.visibility = View.VISIBLE
+            binding.filterLocation.visibility = View.VISIBLE
             location.isSelected = true
         }
-        view.sort.setOnClickListener {
-            view.filter_category.visibility = View.GONE
+        binding.sort.setOnClickListener {
+            binding.filterCategory.visibility = View.GONE
             category.isSelected = false
-            view.filter_location.visibility = View.GONE
+            binding.filterLocation.visibility = View.GONE
             location.isSelected = false
-            view.filter_sort.visibility = View.VISIBLE
+            binding.filterSort.visibility = View.VISIBLE
             sort.isSelected = true
         }
 
         //필터 - 카테고리
-        val rgCategoryOne: RadioGroup = view.category_radio_group_one
-        val rgCategoryTwo: RadioGroup = view.category_radio_group_two
-        var categoryResult: String = "선택된 카테고리"
+        val rgCategoryOne: RadioGroup = binding.categoryRadioGroupOne
+        val rgCategoryTwo: RadioGroup = binding.categoryRadioGroupTwo
 
         //필터 - 카테고리 윗줄
         if (rgCategoryOne != null) {
-            rgCategoryOne.setOnCheckedChangeListener { group, checkedId ->
+            rgCategoryOne.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
                     education.id -> {
                         if (education.isChecked)
                             rgCategoryTwo.clearCheck()
-                        categoryResult = education.text.toString()
+                        viewModel.setFilterCategory(getString(R.string.category_education))
                     }
                     employment.id -> {
                         if (employment.isChecked)
                             rgCategoryTwo.clearCheck()
-                        categoryResult = employment.text.toString()
+                        viewModel.setFilterCategory(getString(R.string.category_employment))
                     }
                     health.id -> {
                         if (health.isChecked)
                             rgCategoryTwo.clearCheck()
-                        categoryResult = health.text.toString()
+                        viewModel.setFilterCategory(getString(R.string.category_health))
                     }
                 }
             }
@@ -93,58 +99,24 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
 
         //필터 - 카테고리 아랫줄
         if (rgCategoryTwo != null) {
-            rgCategoryTwo.setOnCheckedChangeListener { group, checkedId ->
+            rgCategoryTwo.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
                     life.id -> {
                         if (life.isChecked)
                             rgCategoryOne.clearCheck()
-                        categoryResult = life.text.toString()
+                        viewModel.setFilterCategory(getString(R.string.category_life))
                     }
                     all.id -> {
                         if (all.isChecked)
                             rgCategoryOne.clearCheck()
-                        categoryResult = all.text.toString()
+                        viewModel.setFilterCategory(getString(R.string.category_all))
                     }
                 }
             }
         }
 
-        //필터 - 거주지
-        view.delete.setOnClickListener {
-            view.location_text.setText(null)
-        }
-
-        //필터 - 정렬
-        val rgSort: RadioGroup = view.sort_radio_group
-        var sortResult: Int = 100
-        if (rgSort != null) {
-            rgSort.setOnCheckedChangeListener { group, checkedId ->
-                when (checkedId) {
-                    star_count_order.id -> {
-                        sortResult = 0
-                        // Toast.makeText(context, sortResult.toString(), Toast.LENGTH_SHORT).show()
-                    }
-                    view_count_order.id -> {
-                        sortResult = 1
-                        // Toast.makeText(context, sortResult.toString(), Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
-
-        return view
-    }
-
-    private fun layoutInit(view: View) {
-        //필터 - 거주지(시/군/구로 검색)
-
-        var editText = view.location_text
-        var locationRecyclerView: RecyclerView = view.findViewById(R.id.location_recyclerview)
-        //don't change the layout size of the RecyclerView(가변)
-        locationRecyclerView.setHasFixedSize(true)
-        adapter = LocationItemAdapter(requireContext())
-
-        editText.addTextChangedListener(object : TextWatcher {
+        // 필터 - 거주지
+        binding.locationText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
@@ -155,10 +127,31 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
             }
         })
 
-        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(requireContext())
+        //필터 - 정렬
+        val rgSort: RadioGroup = binding.sortRadioGroup
+        if (rgSort != null) {
+            rgSort.setOnCheckedChangeListener { _, checkedId ->
+                when (checkedId) {
+                    star_count_order.id -> {
+                        viewModel.setSortOption(getString(R.string.sort_star_count))
+                    }
+                    view_count_order.id -> {
+                        viewModel.setSortOption(getString(R.string.sort_view_count))
+                    }
+                }
+            }
+        }
 
-        locationRecyclerView.setLayoutManager(layoutManager)
-        locationRecyclerView.setAdapter(adapter)
+        binding.delete.setOnClickListener {
+            binding.locationText.text = null
+        }
+
+        binding.apply.setOnClickListener {
+            viewModel.setCompleted(true)
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.remove(this)
+                ?.commit()
+        }
     }
-
 }
