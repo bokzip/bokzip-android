@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">bokzip</string>
+    <string name="category_education">교육지원</string>
+    <string name="category_life">생활지원</string>
+    <string name="category_health">건강지원</string>
+    <string name="category_employment">고용지원</string>
+    <string name="category_all">지원</string>
+    <string name="sort_star_count">starCount</string>
+    <string name="sort_view_count">viewCount</string>
 </resources>
