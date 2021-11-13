@@ -16,6 +16,8 @@ import com.unionz.bokzip.adapter.LocationItemAdapter
 import com.unionz.bokzip.viewmodel.FilterViewModel
 import kotlinx.android.synthetic.main.bottom_sheet_filter.*
 import com.unionz.bokzip.databinding.BottomSheetFilterBinding
+import com.unionz.bokzip.model.type.FilterCategory
+import com.unionz.bokzip.model.type.FilterSortOption
 
 class FilterBottomSheet : BottomSheetDialogFragment() {
     private lateinit var adapter: LocationItemAdapter
@@ -32,12 +34,12 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
     ): View? {
         binding = BottomSheetFilterBinding.inflate(inflater, container, false)
 
-        init()
+        setListener()
 
         return binding.root
     }
 
-    private fun init() {
+    private fun setListener() {
         binding.locationRecyclerview.setHasFixedSize(true)
         binding.locationRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         adapter = LocationItemAdapter(requireContext())
@@ -70,46 +72,46 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
             sort.isSelected = true
         }
 
-        //필터 - 카테고리
+        // 필터 - 카테고리
         val rgCategoryOne: RadioGroup = binding.categoryRadioGroupOne
         val rgCategoryTwo: RadioGroup = binding.categoryRadioGroupTwo
 
-        //필터 - 카테고리 윗줄
+        // 필터 - 카테고리 윗줄
         if (rgCategoryOne != null) {
-            rgCategoryOne.setOnCheckedChangeListener { _, checkedId ->
+            binding.categoryRadioGroupOne.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
                     education.id -> {
                         if (education.isChecked)
                             rgCategoryTwo.clearCheck()
-                        viewModel.setFilterCategory(getString(R.string.category_education))
+                        viewModel.setFilterCategory(getString(FilterCategory.EDUCATION.strResId))
                     }
                     employment.id -> {
                         if (employment.isChecked)
                             rgCategoryTwo.clearCheck()
-                        viewModel.setFilterCategory(getString(R.string.category_employment))
+                        viewModel.setFilterCategory(getString(FilterCategory.EMPLOYMENT.strResId))
                     }
                     health.id -> {
                         if (health.isChecked)
                             rgCategoryTwo.clearCheck()
-                        viewModel.setFilterCategory(getString(R.string.category_health))
+                        viewModel.setFilterCategory(getString(FilterCategory.HEALTH.strResId))
                     }
                 }
             }
         }
 
-        //필터 - 카테고리 아랫줄
+        // 필터 - 카테고리 아랫줄
         if (rgCategoryTwo != null) {
-            rgCategoryTwo.setOnCheckedChangeListener { _, checkedId ->
+            binding.categoryRadioGroupTwo.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
                     life.id -> {
                         if (life.isChecked)
                             rgCategoryOne.clearCheck()
-                        viewModel.setFilterCategory(getString(R.string.category_life))
+                        viewModel.setFilterCategory(getString(FilterCategory.LIFE.strResId))
                     }
                     all.id -> {
                         if (all.isChecked)
                             rgCategoryOne.clearCheck()
-                        viewModel.setFilterCategory(getString(R.string.category_all))
+                        viewModel.setFilterCategory(getString(FilterCategory.ALL.strResId))
                     }
                 }
             }
@@ -127,16 +129,16 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
             }
         })
 
-        //필터 - 정렬
+        // 필터 - 정렬
         val rgSort: RadioGroup = binding.sortRadioGroup
         if (rgSort != null) {
             rgSort.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
                     star_count_order.id -> {
-                        viewModel.setSortOption(getString(R.string.sort_star_count))
+                        viewModel.setSortOption(getString(FilterSortOption.STAR_COUNT.strResId))
                     }
                     view_count_order.id -> {
-                        viewModel.setSortOption(getString(R.string.sort_view_count))
+                        viewModel.setSortOption(getString(FilterSortOption.VIEW_COUNT.strResId))
                     }
                 }
             }
