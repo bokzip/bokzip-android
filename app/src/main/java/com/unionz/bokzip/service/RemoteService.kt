@@ -1,29 +1,33 @@
 package com.unionz.bokzip.service
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.unionz.bokzip.model.GeneralBokjiContent
-import com.unionz.bokzip.model.GeneralBokjiItem
-import com.unionz.bokzip.model.RecommendBokjiContent
-import com.unionz.bokzip.model.RecommendBokjiItem
+import com.unionz.bokzip.model.*
+import okhttp3.JavaNetCookieJar
+import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
+import java.net.CookieManager
 
 interface RemoteService {
 
     // 추천 탭
-    @GET("/post/center/category/{category}")
-    fun getRecommendBokji(@Path("category") category: String): Call<ArrayList<RecommendBokjiItem>>
+    @GET("/post/centers")
+    suspend fun getRecommendBokji(): Response<ArrayList<RecommendBokjiItem>?>
 
     // 일반 탭
     @GET("/post/generals")
     fun getGeneralBokji(): Call<ArrayList<GeneralBokjiItem>>
+
+    // 필터
+    @GET("/post/center/custom")
+    suspend fun getCategoryFilterResult(
+        @Query("category") category: String?,
+        @Query("area") area: String?,
+        @Query("sort") sort: String?
+    ): Response<ArrayList<RecommendBokjiItem>?>
 
     // 상세정보
     @GET("/post/center/{id}")
@@ -49,14 +53,18 @@ interface RemoteService {
 
     // static 처럼 공유객체로 사용가능, 모든 인스턴스가 공유하는 객체로서 동작
     companion object {
-        private const val BASE_URL = "http://10.0.2.2:8080" // @TODO : 추후 주소 변경하기 (에뮬 전용 주소)
+        private const val BASE_URL =
+            "https://bokzip2.herokuapp.com/" // @TODO : 추후 주소 변경하기 (에뮬 전용 주소) http://10.0.2.2:8080
 
         fun create(): RemoteService {
-            val gson : Gson =   GsonBuilder().setLenient().create();
+            val client = OkHttpClient.Builder()
+                .cookieJar(JavaNetCookieJar(CookieManager()))
+                .build()
 
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(RemoteService::class.java)
         }
