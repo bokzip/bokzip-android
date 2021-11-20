@@ -4,18 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioGroup
 import androidx.fragment.app.activityViewModels
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.unionz.bokzip.adapter.NewLocationItemAdapter
+import com.unionz.bokzip.adapter.FilterItemAdapter
 import com.unionz.bokzip.viewmodel.FilterViewModel
 import kotlinx.android.synthetic.main.bottom_sheet_filter.*
 import com.unionz.bokzip.databinding.BottomSheetFilterBinding
-import com.unionz.bokzip.model.type.FilterCategory
+import com.unionz.bokzip.model.type.FilterOption
 import com.unionz.bokzip.model.type.FilterSortOption
 
 class FilterBottomSheet : BottomSheetDialogFragment() {
@@ -36,7 +35,26 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun initializeView() {
-        val locationItemAdapter = NewLocationItemAdapter(viewModel)
+        val categoryItemAdapter = FilterItemAdapter(requireContext(), viewModel, FilterOption.CATEGORY)
+        FlexboxLayoutManager(requireContext()).apply {
+            flexWrap = FlexWrap.WRAP
+            flexDirection = FlexDirection.ROW
+            justifyContent = JustifyContent.CENTER
+        }.let {
+            binding.categoryBtn.layoutManager = it
+            binding.categoryBtn.adapter = categoryItemAdapter
+        }
+        val categories = listOf(
+            R.string.category_short_education,
+            R.string.category_short_employment,
+            R.string.category_short_health,
+            R.string.category_short_life,
+            R.string.category_all
+        )
+
+        categoryItemAdapter.setIntData(categories)
+
+        val locationItemAdapter = FilterItemAdapter(requireContext(), viewModel, FilterOption.LOCATION)
         FlexboxLayoutManager(requireContext()).apply {
             flexWrap = FlexWrap.WRAP
             flexDirection = FlexDirection.ROW
@@ -46,7 +64,7 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
             binding.locationBtn.adapter = locationItemAdapter
         }
         val locations = resources.getStringArray(R.array.location_array)
-        locationItemAdapter.setData(locations)
+        locationItemAdapter.setStrData(locations)
     }
 
     private fun setListener() {
@@ -77,62 +95,14 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
             sort.isSelected = true
         }
 
-        // 필터 - 카테고리
-        val rgCategoryOne: RadioGroup = binding.categoryRadioGroupOne
-        val rgCategoryTwo: RadioGroup = binding.categoryRadioGroupTwo
-
-        // 필터 - 카테고리 윗줄
-        if (rgCategoryOne != null) {
-            binding.categoryRadioGroupOne.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    education.id -> {
-                        if (education.isChecked)
-                            rgCategoryTwo.clearCheck()
-                        viewModel.setFilterCategory(getString(FilterCategory.EDUCATION.strResId))
-                    }
-                    employment.id -> {
-                        if (employment.isChecked)
-                            rgCategoryTwo.clearCheck()
-                        viewModel.setFilterCategory(getString(FilterCategory.EMPLOYMENT.strResId))
-                    }
-                    health.id -> {
-                        if (health.isChecked)
-                            rgCategoryTwo.clearCheck()
-                        viewModel.setFilterCategory(getString(FilterCategory.HEALTH.strResId))
-                    }
-                }
-            }
-        }
-
-        // 필터 - 카테고리 아랫줄
-        if (rgCategoryTwo != null) {
-            binding.categoryRadioGroupTwo.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    life.id -> {
-                        if (life.isChecked)
-                            rgCategoryOne.clearCheck()
-                        viewModel.setFilterCategory(getString(FilterCategory.LIFE.strResId))
-                    }
-                    all.id -> {
-                        if (all.isChecked)
-                            rgCategoryOne.clearCheck()
-                        viewModel.setFilterCategory(getString(FilterCategory.ALL.strResId))
-                    }
-                }
-            }
-        }
-
         // 필터 - 정렬
-        val rgSort: RadioGroup = binding.sortRadioGroup
-        if (rgSort != null) {
-            rgSort.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    star_count_order.id -> {
-                        viewModel.setSortOption(getString(FilterSortOption.STAR_COUNT.strResId))
-                    }
-                    view_count_order.id -> {
-                        viewModel.setSortOption(getString(FilterSortOption.VIEW_COUNT.strResId))
-                    }
+        binding.sortRadioGroup?.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                binding.starCountOrder.id -> {
+                    viewModel.setSortOption(getString(FilterSortOption.STAR_COUNT.strResId))
+                }
+                binding.viewCountOrder.id -> {
+                    viewModel.setSortOption(getString(FilterSortOption.VIEW_COUNT.strResId))
                 }
             }
         }
