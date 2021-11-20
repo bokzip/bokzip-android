@@ -1,18 +1,17 @@
 package com.unionz.bokzip
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.unionz.bokzip.adapter.LocationItemAdapter
+import com.unionz.bokzip.adapter.NewLocationItemAdapter
 import com.unionz.bokzip.viewmodel.FilterViewModel
 import kotlinx.android.synthetic.main.bottom_sheet_filter.*
 import com.unionz.bokzip.databinding.BottomSheetFilterBinding
@@ -20,10 +19,6 @@ import com.unionz.bokzip.model.type.FilterCategory
 import com.unionz.bokzip.model.type.FilterSortOption
 
 class FilterBottomSheet : BottomSheetDialogFragment() {
-    private lateinit var adapter: LocationItemAdapter
-    private var handler: Handler = Handler(Looper.getMainLooper())
-    private lateinit var workRunnable: Runnable
-    private val DELAY: Long = 500
     private val viewModel: FilterViewModel by activityViewModels()
     private lateinit var binding: BottomSheetFilterBinding
 
@@ -34,17 +29,27 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
     ): View? {
         binding = BottomSheetFilterBinding.inflate(inflater, container, false)
 
+        initializeView()
         setListener()
 
         return binding.root
     }
 
-    private fun setListener() {
-        binding.locationRecyclerview.setHasFixedSize(true)
-        binding.locationRecyclerview.layoutManager = LinearLayoutManager(requireContext())
-        adapter = LocationItemAdapter(requireContext())
-        binding.locationRecyclerview.adapter = adapter
+    private fun initializeView() {
+        val locationItemAdapter = NewLocationItemAdapter(viewModel)
+        FlexboxLayoutManager(requireContext()).apply {
+            flexWrap = FlexWrap.WRAP
+            flexDirection = FlexDirection.ROW
+            justifyContent = JustifyContent.CENTER
+        }.let {
+            binding.locationBtn.layoutManager = it
+            binding.locationBtn.adapter = locationItemAdapter
+        }
+        val locations = resources.getStringArray(R.array.location_array)
+        locationItemAdapter.setData(locations)
+    }
 
+    private fun setListener() {
         binding.category.isSelected = true
 
         binding.category.setOnClickListener {
@@ -117,18 +122,6 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
             }
         }
 
-        // 필터 - 거주지
-        binding.locationText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable) {
-                val keyword = s.toString()
-                workRunnable = Runnable { adapter.filter(keyword) }
-                handler.removeCallbacks(workRunnable)
-                handler.postDelayed(workRunnable, DELAY)
-            }
-        })
-
         // 필터 - 정렬
         val rgSort: RadioGroup = binding.sortRadioGroup
         if (rgSort != null) {
@@ -142,10 +135,6 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
                     }
                 }
             }
-        }
-
-        binding.delete.setOnClickListener {
-            binding.locationText.text = null
         }
 
         binding.apply.setOnClickListener {
