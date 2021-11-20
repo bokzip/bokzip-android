@@ -23,13 +23,27 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:fontFamily">@font/noto_sans_cjkkr_bold</item>
         <item name="android:textSize">15dp</item>
-        <item name="android:textColor">@drawable/selector_category_text_color</item>
+        <item name="android:textColor">@drawable/selector_category_btn_text_color</item>
+    </style>
+
+    <style name="category_btn_text_appearance">
+        <item name="android:textColor">@drawable/selector_category_btn_text_color</item>
+        <item name="fontFamily">@font/noto_sans_cjkkr_bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="location_btn_text_appearance">
-        <item name="android:textColor">@drawable/selector_location_text_color</item>
+        <item name="android:textColor">@drawable/selector_location_btn_text_color</item>
         <item name="fontFamily">@font/noto_sans_cjkkr_regular</item>
         <item name="android:textSize">13sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="sort_btn_text_appearance">
+        <item name="android:textColor">@drawable/selector_sort_btn_text_color</item>
+        <item name="fontFamily">@font/noto_sans_cjkkr_bold</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 </resources>
