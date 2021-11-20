@@ -7,17 +7,14 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/location_btn"
+            android:id="@+id/category_btn"
+            style="@style/category_btn_text_appearance"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/selector_category_btn_bg"
+            android:gravity="center"
             android:stateListAnimator="@null"
-            android:layout_margin="10dp"
-            style="@style/location_btn_text_appearance"
-            android:minHeight="0dp"
-            android:minWidth="0dp"
-            android:paddingVertical="10dp"
-            android:paddingHorizontal="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selector_location_bg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
