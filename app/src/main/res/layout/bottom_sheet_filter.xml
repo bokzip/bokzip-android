@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--@see : https://odomm.tistory.com/entry/se-->
+<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -33,8 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/selector_tab_menu_bg"
-                android:fontFamily="@font/noto_sans_cjkkr_medium"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
                 android:includeFontPadding="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
@@ -50,8 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/selector_tab_menu_bg"
-                android:fontFamily="@font/noto_sans_cjkkr_medium"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
                 android:includeFontPadding="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
@@ -66,8 +64,7 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_tab_menu_bg"
-                android:fontFamily="@font/noto_sans_cjkkr_medium"
+                android:fontFamily="@font/noto_sans_cjkkr_bold"
                 android:includeFontPadding="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
@@ -114,100 +111,19 @@
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:background="@color/white"
-            android:orientation="vertical"
-            android:visibility="visible">
+            android:orientation="vertical">
 
-            <RadioGroup
-                android:id="@+id/category_radio_group_one"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/education"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:background="@drawable/selector_category_bg"
-                    android:button="@null"
-                    android:fontFamily="@font/noto_sans_cjkkr_bold"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="교육"
-                    android:textColor="@drawable/selector_category_text_color"
-                    android:textSize="15dp" />
-
-                <RadioButton
-                    android:id="@+id/employment"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@drawable/selector_category_bg"
-                    android:button="@null"
-                    android:fontFamily="@font/noto_sans_cjkkr_bold"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="고용"
-                    android:textColor="@drawable/selector_category_text_color"
-                    android:textSize="15dp" />
-
-                <RadioButton
-                    android:id="@+id/health"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_toRightOf="@id/employment"
-                    android:background="@drawable/selector_category_bg"
-                    android:button="@null"
-                    android:fontFamily="@font/noto_sans_cjkkr_bold"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="건강"
-                    android:textColor="@drawable/selector_category_text_color"
-                    android:textSize="15dp" />
-            </RadioGroup>
-
-            <RadioGroup
-                android:id="@+id/category_radio_group_two"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/life"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_alignTop="@id/all"
-                    android:layout_toLeftOf="@id/all"
-                    android:background="@drawable/selector_category_bg"
-                    android:button="@null"
-                    android:fontFamily="@font/noto_sans_cjkkr_bold"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="생활"
-                    android:textColor="@drawable/selector_category_text_color"
-                    android:textSize="15dp" />
-
-                <RadioButton
-                    android:id="@+id/all"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_below="@id/employment"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="30dp"
-                    android:background="@drawable/selector_category_bg"
-                    android:button="@null"
-                    android:fontFamily="@font/noto_sans_cjkkr_bold"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="전체"
-                    android:textColor="@drawable/selector_category_text_color"
-                    android:textSize="15dp" />
-            </RadioGroup>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/category_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never" />
+            </androidx.core.widget.NestedScrollView>
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/filter_location"
@@ -218,44 +134,17 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <FrameLayout
-                android:layout_width="match_parent"
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/location_text"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/location_btn"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/btn_search_box_bg"
-                    android:drawableLeft="@drawable/ic_search"
-                    android:drawablePadding="5dp"
-                    android:fontFamily="@font/noto_sans_cjkkr_medium"
-                    android:gravity="center_vertical"
-                    android:hint="시/군/구 명으로 검색 (ex. 용산구)"
-                    android:includeFontPadding="false"
-                    android:paddingLeft="15dp"
-                    android:textColorHint="@color/darkGray"
-                    android:textSize="15dp" />
-
-                <ImageButton
-                    android:id="@+id/delete"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|right"
-                    android:layout_marginRight="15dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_search_delete" />
-            </FrameLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/location_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="15dp"
-                android:scrollbars="vertical" />
-
+                    android:overScrollMode="never" />
+            </androidx.core.widget.NestedScrollView>
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/filter_sort"
@@ -274,34 +163,26 @@
 
                 <RadioButton
                     android:id="@+id/star_count_order"
+                    style="@style/sort_btn_text_appearance"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_marginRight="30dp"
-                    android:background="@drawable/selector_category_bg"
+                    android:background="@drawable/selector_sort_btn_bg"
                     android:button="@null"
-                    android:fontFamily="@font/noto_sans_cjkkr_bold"
                     android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="인기순"
-                    android:textColor="@drawable/selector_category_text_color"
-                    android:textSize="15dp" />
+                    android:text="@string/sort_btn_text_star_count" />
 
                 <RadioButton
                     android:id="@+id/view_count_order"
+                    style="@style/sort_btn_text_appearance"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:background="@drawable/selector_category_bg"
+                    android:background="@drawable/selector_sort_btn_bg"
                     android:button="@null"
-                    android:fontFamily="@font/noto_sans_cjkkr_bold"
                     android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="조회순"
-                    android:textColor="@drawable/selector_category_text_color"
-                    android:textSize="15dp" />
+                    android:text="@string/sort_btn_text_view_count" />
             </RadioGroup>
-
         </LinearLayout>
-
 
         <Button
             android:id="@+id/apply"
@@ -312,9 +193,8 @@
             android:background="@drawable/btn_default_bg"
             android:fontFamily="@font/noto_sans_cjkkr_bold"
             android:includeFontPadding="false"
-            android:text="적용하기"
+            android:text="@string/apply"
             android:textColor="@color/white"
             android:textSize="15dp" />
-
     </LinearLayout>
 </layout>
