@@ -38,7 +38,7 @@ class PreferenceUtil(context: Context) {
         return prefs.getBoolean("isUpdate", false)
     }
 
-    fun setIsUpdate(isUpdate: Boolean) {
-        prefs.edit().putBoolean("isUpdate", isUpdate).apply()
+    fun setCookie(cookie: String) {
+        prefs.edit().putString("cookie", cookie).apply()
     }
 }
