@@ -25,8 +25,8 @@
         android:text="로그인 전 둘러보기"
         android:textColor="@color/black"
         android:textSize="13dp"
-        style="@style/Hyperlink"
-        android:onClick="onClick"/>
+        android:paddingTop="15dp"
+        style="@style/Hyperlink" />
 
     <LinearLayout
         android:layout_width="match_parent"
