@@ -33,9 +33,8 @@ class PreferenceUtil(context: Context) {
         prefs.edit().putString("location", location).apply()
     }
 
-    // 스크랩 업데이트 여부
-    fun getIsUpdate(): Boolean {
-        return prefs.getBoolean("isUpdate", false)
+    fun getCookie(): String {
+        return prefs.getString("cookie", null).toString()
     }
 
     fun setCookie(cookie: String) {
