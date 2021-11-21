@@ -2,67 +2,53 @@ package com.unionz.bokzip.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unionz.bokzip.MyActivity
 import com.unionz.bokzip.R
+import com.unionz.bokzip.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    /*
-        ViewPager2는 FragmentStateAdapter에 FragmentViewHolder가 지정되어 구현되는 것이다.
-        RecyclerView는 Adpater에 ViewHolder를 지정하여 구현되는 것과 동일한 방식이다.
-     */
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        // 어댑터 적용하기
-        view_pager.adapter = ViewPagerAdapter(this)
+        initializeView()
+        setListener()
+    }
 
-        // 스와이프 기능 끄기
-        view_pager.isUserInputEnabled = false
+    private fun initializeView() {
+        binding.viewPager.adapter = ViewPagerAdapter(this)
+        binding.viewPager.isUserInputEnabled = false
 
-        // 탭의 동작을 감지 및 처리
-        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-            }
-        })
-
-        // tabLayout과 viewPager 연결하기
-        val tabTitles = listOf("추천", "일반", "스크랩")
+        val tabTitles = listOf(
+            getString(R.string.tab_item_all),
+            getString(R.string.tab_item_general),
+            getString(R.string.tab_item_scrap)
+        )
         TabLayoutMediator(tab_layout, view_pager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
     }
 
-    fun onClick(v: View) {
-        when (v.id) {
-            R.id.my -> {
-                val intent = Intent(this, MyActivity::class.java)
-                startActivity(intent)
-            }
+    private fun setListener() {
+        binding.my.setOnClickListener {
+            val intent = Intent(this, MyActivity::class.java)
+            startActivity(intent)
         }
     }
 
-    // 뷰페이저 아이템으로 탭별 프래그먼트 등록
     inner class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 3
 
         override fun createFragment(position: Int): Fragment {
-            return when(position){
+            return when (position) {
                 0 -> RecommendFragment()
                 1 -> GeneralFragment()
                 else -> ScrapFragment()
