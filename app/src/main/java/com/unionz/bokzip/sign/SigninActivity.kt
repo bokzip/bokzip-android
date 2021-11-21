@@ -17,6 +17,7 @@ class SigninActivity : AppCompatActivity() {
 
     private fun setListener() {
         kakao.setOnClickListener {
+            // TODO("Not yet implemented")
         }
 
         google.setOnClickListener {
