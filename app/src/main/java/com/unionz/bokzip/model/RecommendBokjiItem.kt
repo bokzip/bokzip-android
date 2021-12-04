@@ -5,5 +5,5 @@ data class RecommendBokjiItem(
     val title: String,
     val thumbnail: String,
     val category: String,
-    val isScrap: String
+    var isScrap: Boolean
 )
