@@ -24,12 +24,8 @@
         </activity>
         <activity android:name=".home.MainActivity"/>
         <activity android:name=".sign.SigninActivity" />
-        <activity android:name=".sign.SignupLocationSetActivity" />
-        <activity android:name=".sign.SignupCategorySetActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".GeneralDetaillActivity" />
-        <activity android:name=".SearchResultActivity"></activity>
-        <activity android:name=".search.SearchActivity" />
         <activity android:name=".MyActivity" />
     </application>
 
