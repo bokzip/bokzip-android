@@ -34,13 +34,6 @@
                         android:text="건강/의료"
                         android:textColor="@color/black"
                         android:textSize="25dp" />
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:paddingLeft="20dp"
-                        android:src="@drawable/ic_detail" />
                 </LinearLayout>
 
                 <androidx.core.widget.NestedScrollView
@@ -79,12 +72,6 @@
                         android:textColor="@color/black"
                         android:textSize="25dp" />
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:paddingLeft="20dp"
-                        android:src="@drawable/ic_detail" />
                 </LinearLayout>
 
                 <androidx.core.widget.NestedScrollView
@@ -123,12 +110,6 @@
                         android:textColor="@color/black"
                         android:textSize="25dp" />
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:paddingLeft="20dp"
-                        android:src="@drawable/ic_detail" />
                 </LinearLayout>
 
                 <androidx.core.widget.NestedScrollView
@@ -167,12 +148,6 @@
                         android:textColor="@color/black"
                         android:textSize="25dp" />
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:paddingLeft="20dp"
-                        android:src="@drawable/ic_detail" />
                 </LinearLayout>
 
                 <androidx.core.widget.NestedScrollView
@@ -211,12 +186,6 @@
                         android:textColor="@color/black"
                         android:textSize="25dp" />
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:paddingLeft="20dp"
-                        android:src="@drawable/ic_detail" />
                 </LinearLayout>
 
                 <androidx.core.widget.NestedScrollView
@@ -255,12 +224,6 @@
                         android:textColor="@color/black"
                         android:textSize="25dp" />
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:paddingLeft="20dp"
-                        android:src="@drawable/ic_detail" />
                 </LinearLayout>
 
                 <androidx.core.widget.NestedScrollView
@@ -298,13 +261,6 @@
                         android:text="기타"
                         android:textColor="@color/black"
                         android:textSize="25dp" />
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:paddingLeft="20dp"
-                        android:src="@drawable/ic_detail" />
                 </LinearLayout>
 
                 <androidx.core.widget.NestedScrollView
