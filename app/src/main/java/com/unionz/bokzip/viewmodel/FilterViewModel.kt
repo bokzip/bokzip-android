@@ -23,6 +23,8 @@ class FilterViewModel(application: Application) :
     private val items = MutableLiveData<ArrayList<RecommendBokjiItem>?>(arrayListOf())
     private val generalItems = MutableLiveData<ArrayList<RecommendBokjiItem>?>(arrayListOf())
     private val scrapItems = MutableLiveData<ArrayList<ScrapBokjiInfo>?>()
+    private val updateItemPosition = MutableLiveData<Int>()
+    private val updateItem = MutableLiveData<RecommendBokjiItem>()
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -48,11 +50,18 @@ class FilterViewModel(application: Application) :
         this.isCompleted.value = isCompleted
     }
 
+    fun setUpdateItem(position: Int, item: RecommendBokjiItem) {
+        this.updateItem.value = item
+        this.updateItemPosition.value = position
+    }
+
     fun getFilterLocation(): LiveData<String?> = filterLocation
     fun getCompleted(): LiveData<Boolean> = isCompleted
     fun getItems(): LiveData<ArrayList<RecommendBokjiItem>?> = items
     fun getGeneralItems(): LiveData<ArrayList<RecommendBokjiItem>?> = generalItems
     fun getScrapItems(): LiveData<ArrayList<ScrapBokjiInfo>?> = scrapItems
+    fun getUpdateItemPosition(): LiveData<Int> = updateItemPosition
+    fun getUpdateItem(): LiveData<RecommendBokjiItem> = updateItem
 
     // TODO move FilterRepository
     private suspend fun getBokjiItem() {
@@ -79,7 +88,7 @@ class FilterViewModel(application: Application) :
             if (response?.isSuccessful) {
                 scrapItems.postValue(response.body()?.data)
             } else {
-                Log.e(TAG, "The requested resource could not be found")
+                Log.e(TAG, "The requested resource could not be found ${response.code()}")
             }
         }
     }
@@ -106,6 +115,7 @@ class FilterViewModel(application: Application) :
             prefs?.getCookie()?.let { cookie ->
                 val response = api.saveCenterScrap(cookie, id)
                 result = if (response?.isSuccessful) {
+                    getScrapBokjiItem()
                     true
                 } else {
                     Log.e(TAG, "The requested resource could not be found")
@@ -122,6 +132,7 @@ class FilterViewModel(application: Application) :
             prefs?.getCookie()?.let { cookie ->
                 val response = api.removeCenterScrap(cookie, id)
                 result = if (response?.isSuccessful) {
+                    getScrapBokjiItem()
                     true
                 } else {
                     Log.e(TAG, "The requested resource could not be found")
@@ -139,6 +150,7 @@ class FilterViewModel(application: Application) :
             prefs?.getCookie()?.let { cookie ->
                 val response = api.saveGeneralScrap(cookie, id)
                 result = if (response?.isSuccessful) {
+                    getScrapBokjiItem()
                     true
                 } else {
                     Log.e(TAG, "The requested resource could not be found ${response.code()}")
@@ -155,6 +167,7 @@ class FilterViewModel(application: Application) :
             prefs?.getCookie()?.let { cookie ->
                 val response = api.removeGeneralScrap(cookie, id)
                 result = if (response?.isSuccessful) {
+                    getScrapBokjiItem()
                     true
                 } else {
                     Log.e(TAG, "The requested resource could not be found ${response.code()}")

@@ -1,7 +1,6 @@
 package com.unionz.bokzip.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import com.unionz.bokzip.adapter.RecommendBokjiItemAdapter
 import com.unionz.bokzip.databinding.FragmentTapScrapBinding
 import com.unionz.bokzip.model.RecommendBokjiItem
 import com.unionz.bokzip.model.ScrapBokjiInfo
-import com.unionz.bokzip.model.ScrapItems
 import com.unionz.bokzip.model.type.TabName
 import com.unionz.bokzip.viewmodel.FilterViewModel
 import kotlinx.android.synthetic.main.fragment_tap_scrap.*
@@ -21,6 +19,7 @@ class ScrapFragment : Fragment() {
     private val TAG: String = "스크랩 탭"
     private val viewModel: FilterViewModel by activityViewModels()
     private lateinit var binding: FragmentTapScrapBinding
+    private lateinit var adapter: RecommendBokjiItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -67,7 +66,7 @@ class ScrapFragment : Fragment() {
             }
         }
 
-        val adapter = RecommendBokjiItemAdapter(requireContext(), list, viewModel, TabName.SCRAP)
+        adapter = RecommendBokjiItemAdapter(requireContext(), list, viewModel, TabName.SCRAP)
         recyclerview.adapter = adapter
         val gridLayoutManager = GridLayoutManager(requireContext(), 2)
         recyclerview.layoutManager = gridLayoutManager

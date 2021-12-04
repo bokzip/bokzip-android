@@ -9,7 +9,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 interface RemoteService {
-
     // 추천 탭
     @GET("/post/centers")
     suspend fun getRecommendBokji(): Response<ArrayList<RecommendBokjiItem>?>
@@ -23,16 +22,28 @@ interface RemoteService {
     suspend fun getScrapBokji(@Header("Cookie") cookie: String): Response<ScrapItems>
 
     @GET("/scraps/centers/{center_id}")
-    suspend fun saveCenterScrap(@Header("Cookie") cookie: String, @Path("center_id") center_id: String): Response<ScrapItem>
+    suspend fun saveCenterScrap(
+        @Header("Cookie") cookie: String,
+        @Path("center_id") center_id: String
+    ): Response<ScrapItem>
 
     @DELETE("/scraps/centers/{center_id}")
-    suspend fun removeCenterScrap(@Header("Cookie") cookie: String, @Path("center_id") center_id: String): Response<ScrapItem>
+    suspend fun removeCenterScrap(
+        @Header("Cookie") cookie: String,
+        @Path("center_id") center_id: String
+    ): Response<ScrapItem>
 
     @GET("/scraps/generals/{generals_id}")
-    suspend fun saveGeneralScrap(@Header("Cookie") cookie: String, @Path("generals_id") generals_id: String): Response<ScrapItem>
+    suspend fun saveGeneralScrap(
+        @Header("Cookie") cookie: String,
+        @Path("generals_id") generals_id: String
+    ): Response<ScrapItem>
 
     @DELETE("/scraps/generals/{generals_id}")
-    suspend fun removeGeneralScrap(@Header("Cookie") cookie: String, @Path("generals_id") generals_id: String): Response<ScrapItem>
+    suspend fun removeGeneralScrap(
+        @Header("Cookie") cookie: String,
+        @Path("generals_id") generals_id: String
+    ): Response<ScrapItem>
 
     // 필터
     @GET("/post/center/custom")
@@ -57,7 +68,7 @@ interface RemoteService {
     fun getGeneralViewCount(@Path("id") id: String): Call<ResponseBody>
 
     companion object {
-        private const val BASE_URL = "https://bokzip2.herokuapp.com/"
+        private const val BASE_URL = "https://bokzip2.herokuapp.com"
 
         fun create(): RemoteService {
             return Retrofit.Builder()

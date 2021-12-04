@@ -57,22 +57,45 @@ class GeneralFragment : Fragment() {
 
             setAdapter(
                 binding.healthRecyclerview,
-                GeneralBokjiItemAdapter(requireContext(), healthMedical, viewModel)
+                GeneralBokjiItemAdapter(requireContext(), viewModel),
+                healthMedical
             )
-            setAdapter(binding.cultureRecyclerview, GeneralBokjiItemAdapter(requireContext(), culture, viewModel))
+            setAdapter(
+                binding.cultureRecyclerview,
+                GeneralBokjiItemAdapter(requireContext(), viewModel),
+                culture
+            )
             setAdapter(
                 binding.transportationRecyclerview,
-                GeneralBokjiItemAdapter(requireContext(), transportation, viewModel)
+                GeneralBokjiItemAdapter(requireContext(), viewModel),
+                transportation
             )
-            setAdapter(binding.itRecyclerview, GeneralBokjiItemAdapter(requireContext(), digital, viewModel))
-            setAdapter(binding.careRecyclerview, GeneralBokjiItemAdapter(requireContext(), childCare, viewModel))
-            setAdapter(binding.workRecyclerview, GeneralBokjiItemAdapter(requireContext(), work, viewModel))
-            setAdapter(binding.etcRecyclerview, GeneralBokjiItemAdapter(requireContext(), etc, viewModel))
+            setAdapter(
+                binding.itRecyclerview,
+                GeneralBokjiItemAdapter(requireContext(), viewModel),
+                digital
+            )
+            setAdapter(
+                binding.careRecyclerview,
+                GeneralBokjiItemAdapter(requireContext(), viewModel),
+                childCare
+            )
+            setAdapter(
+                binding.workRecyclerview, GeneralBokjiItemAdapter(requireContext(), viewModel), work
+            )
+            setAdapter(
+                binding.etcRecyclerview, GeneralBokjiItemAdapter(requireContext(), viewModel), etc
+            )
         }
     }
 
-    private fun setAdapter(recyclerView: RecyclerView, adapter: GeneralBokjiItemAdapter) {
-        recyclerView.adapter = adapter
+    private fun setAdapter(
+        recyclerView: RecyclerView,
+        generalBokjiadapter: GeneralBokjiItemAdapter,
+        dataSet: ArrayList<RecommendBokjiItem>
+    ) {
+        generalBokjiadapter.setData(dataSet)
+        recyclerView.adapter = generalBokjiadapter
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
     }

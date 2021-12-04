@@ -14,11 +14,13 @@ import com.unionz.bokzip.viewmodel.FilterViewModel
 import kotlinx.android.synthetic.main.fragment_tap_recommend.*
 import com.unionz.bokzip.databinding.FragmentTapRecommendBinding
 import com.unionz.bokzip.model.type.TabName
+import com.unionz.bokzip.util.prefs
 
 class RecommendFragment : Fragment() {
     private val TAG = "추천 탭"
     private val viewModel: FilterViewModel by activityViewModels()
     private lateinit var binding: FragmentTapRecommendBinding
+    private lateinit var adapter: RecommendBokjiItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +32,8 @@ class RecommendFragment : Fragment() {
         binding.viewModel = viewModel
 
         setListener()
+        setObserver()
+
         return binding.root
     }
 
@@ -38,7 +42,9 @@ class RecommendFragment : Fragment() {
             val bottomSheet = FilterBottomSheet()
             bottomSheet.show(parentFragmentManager, bottomSheet.tag);
         }
+    }
 
+    private fun setObserver() {
         viewModel.getCompleted().observe(viewLifecycleOwner) { isCompleted ->
             if (isCompleted) {
                 viewModel.getFilterBokjiItem()
@@ -54,10 +60,20 @@ class RecommendFragment : Fragment() {
     }
 
     private fun initializeView(bokjiList: ArrayList<RecommendBokjiItem>) {
-        val adapter = RecommendBokjiItemAdapter(requireContext(), bokjiList, viewModel, TabName.ALL)
+        adapter = RecommendBokjiItemAdapter(requireContext(), bokjiList, viewModel, TabName.ALL) // this
         recyclerview.adapter = adapter
         val gridLayoutManager = GridLayoutManager(requireContext(), 2)
         recyclerview.layoutManager = gridLayoutManager
-        binding.categoryTextview.text =  (viewModel.getFilterLocation().value ?: "중앙부처") + " 복지"
+        binding.categoryTextview.text = (viewModel.getFilterLocation().value ?: "중앙부처") + " 복지"
+    }
+
+    override fun onResume() {
+        super.onResume()
+        prefs?.let {
+            it.isScrapItem()?.let { isScrap ->
+                adapter.modify(it.getScrapItemPosition(), isScrap.toBoolean())
+                prefs?.resetIsScrapItem()
+            }
+        }
     }
 }
