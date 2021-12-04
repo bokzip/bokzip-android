@@ -7,13 +7,14 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.unionz.bokzip.IntroActivity
 import com.unionz.bokzip.R
 import com.unionz.bokzip.home.MainActivity
+import com.unionz.bokzip.util.prefs
 import kotlinx.android.synthetic.main.activity_signup_location_set.*
 
 class SignupLocationSetActivity : AppCompatActivity() {
-    private var isSkipped: Boolean = true // 건너뛰기 여부
+    /** 건너뛰기 여부 */
+    private var isSkipped: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,22 +49,19 @@ class SignupLocationSetActivity : AppCompatActivity() {
 
     fun onClick(v: View) {
         when (v) {
-            back -> onBackPressed() // 뒤로가기 버튼
-            complete -> { // 로그인 완료 버튼
-                if(!isSkipped) // 거주지 입력됨 -> 완료 버튼(건너뛰기 x)
-                    IntroActivity.prefs.setLocation(search_edit_text.text.toString()) // 사용자가 설정한 거주지 정보 저장
+            apply -> onBackPressed()
+            complete -> {
+                if(!isSkipped)
+                    prefs?.setLocation(search_edit_text.text.toString())
                 Toast.makeText(this, "회원가입을 완료했습니다.", Toast.LENGTH_SHORT).show()
                 var intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP) // 백스택에 쌓여있는 모든 액티비티 종료
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
                 finish()
             }
-            delete -> { // 검색어 삭제
+            delete -> {
                 search_edit_text.setText("")
             }
-//            cur_location->{ // 현재위치 찾기 버튼 : 추후 구현 예정
-//
-//            }
         }
     }
 }

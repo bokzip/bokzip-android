@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.unionz.bokzip.IntroActivity
 import com.unionz.bokzip.R
+import com.unionz.bokzip.util.prefs
 import kotlinx.android.synthetic.main.activity_signup_category_set.*
 
 class SignupCategorySetActivity : AppCompatActivity() {
@@ -24,17 +24,17 @@ class SignupCategorySetActivity : AppCompatActivity() {
                 education.id -> {
                     if (education.isChecked)
                         category_radio_group_two.clearCheck()
-                    categoryResult = "교육지원"
+                    categoryResult = getString(R.string.category_education)
                 }
                 employment.id -> {
                     if (employment.isChecked)
                         category_radio_group_two.clearCheck()
-                    categoryResult = "고용지원"
+                    categoryResult = getString(R.string.general_category_work)
                 }
                 health.id -> {
                     if (health.isChecked)
                         category_radio_group_two.clearCheck()
-                    categoryResult = "건강지원"
+                    categoryResult = getString(R.string.category_health)
                 }
             }
 
@@ -49,12 +49,12 @@ class SignupCategorySetActivity : AppCompatActivity() {
                 life.id -> {
                     if (life.isChecked)
                         category_radio_group_one.clearCheck()
-                    categoryResult = "생활지원"
+                    categoryResult = getString(R.string.category_life)
                 }
                 all.id -> {
                     if (all.isChecked)
                         category_radio_group_one.clearCheck()
-                    categoryResult = "전체"
+                    categoryResult = getString(R.string.category_short_all)
                 }
             }
 
@@ -66,11 +66,11 @@ class SignupCategorySetActivity : AppCompatActivity() {
 
     fun onClick(v: View) {
         when (v) {
-            back -> onBackPressed() // 뒤로가기 버튼
-            next -> { // 복지 신청 클릭 시, 해당 복지 사이트로 이동
-                IntroActivity.prefs.setCategory(categoryResult) // 사용자가 설정한 카테고리 값 저장
+            apply -> onBackPressed()
+            next -> {
+                prefs?.setCategory(categoryResult)
                 var intent = Intent(this, SignupLocationSetActivity::class.java)
-                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION) // 화면전환 에니메이션 제거
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(intent)
             }
         }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.unionz.bokzip.R
 import com.unionz.bokzip.home.MainActivity
+import com.unionz.bokzip.util.prefs
 import kotlinx.android.synthetic.main.activity_signin.*
 
 class SigninActivity : AppCompatActivity() {
@@ -27,6 +28,15 @@ class SigninActivity : AppCompatActivity() {
         browsing.setOnClickListener {
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        prefs?.getCookie()?.let { // TODO check status code
+            val intent = Intent(this@SigninActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@color/white"
-    tools:context=".sign.SignupLocationSetActivity">
+    android:background="@color/white">
 
     <ImageButton
-        android:id="@+id/back"
+        android:id="@+id/apply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"

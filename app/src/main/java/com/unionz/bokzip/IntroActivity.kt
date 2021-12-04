@@ -2,8 +2,6 @@ package com.unionz.bokzip
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.unionz.bokzip.home.MainActivity
@@ -16,7 +14,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class IntroActivity : AppCompatActivity() {
-    private val SPLASH_VIEW_TIME: Long = 2000
     private var job: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +27,6 @@ class IntroActivity : AppCompatActivity() {
     private fun initializeView() {
         lateinit var intent: Intent
         val cookie = prefs?.getCookie()
-
         intent = if (cookie.isNullOrBlank()) {
             Intent(this, SigninActivity::class.java)
         } else {
@@ -49,5 +45,9 @@ class IntroActivity : AppCompatActivity() {
     override fun onPause() {
         job?.cancel()
         super.onPause()
+    }
+
+    companion object {
+        private const val SPLASH_VIEW_TIME: Long = 2000
     }
 }
