@@ -1,18 +1,30 @@
 package com.unionz.bokzip
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.unionz.bokzip.databinding.ActivityMyBinding
+import com.unionz.bokzip.sign.SigninActivity
+import com.unionz.bokzip.util.prefs
 
 class MyActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_my)
+
+        setListener()
     }
 
-    fun onClick(v: View) {
-        when (v.id) {
-            R.id.back -> onBackPressed()
+    private fun setListener() {
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
+        binding.logout.setOnClickListener {
+            prefs?.resetCookie()
+            startActivity(Intent(this, SigninActivity::class.java))
+            finish()
         }
     }
 }

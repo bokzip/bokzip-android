@@ -28,11 +28,15 @@ class PreferenceUtil(context: Context) {
         prefs.edit().putString("location", location).apply()
     }
 
-    fun getCookie(): String {
-        return prefs.getString("cookie", null).toString()
+    fun getCookie(): String? {
+        return prefs.getString("cookie", null)
     }
 
     fun setCookie(cookie: String) {
         prefs.edit().putString("cookie", cookie).apply()
+    }
+
+    fun resetCookie() {
+        prefs.edit().putString("cookie", null).apply()
     }
 }
