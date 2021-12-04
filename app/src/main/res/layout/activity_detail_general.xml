@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+:<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -64,7 +64,7 @@
                     android:background="@drawable/btn_default_bg"/>
 
                 <ImageButton
-                    android:id="@+id/back"
+                    android:id="@+id/apply"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
@@ -130,8 +130,7 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginRight="5dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_unscrap"
-                android:onClick="onClick"/>
+                android:src="@drawable/ic_unscrap" />
 
             <TextView
                 android:id="@+id/scrap_cnt"
@@ -158,7 +157,6 @@
             android:textSize="15dp"
             android:text="신청 사이트로 이동하기"
             style="?android:attr/borderlessButtonStyle"
-            android:background="@color/main"
-            android:onClick="onClick"/>
+            android:background="@color/main" />
     </LinearLayout>
 </LinearLayout>
